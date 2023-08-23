@@ -3,7 +3,7 @@ import React from "react";
 export default function Navbar() {
   return (
     <>
-      <header className="sticky top-0 z-10">
+      <header className="sticky top-0 z-10 ">
         <div>
           <img
             className="w-full h-1 flex justify-center items-center object-cover"
