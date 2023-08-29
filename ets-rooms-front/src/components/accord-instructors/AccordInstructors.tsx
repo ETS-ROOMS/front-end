@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleInstructor from "../circle-instructor/CircleInstructor";
 
-export default function Instructors() {
+export default function AccordInstructors() {
   return (
     <Accordion style={{ boxShadow: "none", marginTop: "10px" }}>
       <AccordionSummary
@@ -15,24 +15,24 @@ export default function Instructors() {
         id="panel1a-header"
       >
         <Typography className="flex gap-5">
-          <CircleInstructor color="#E552DA" names="Agatha" />
-          <CircleInstructor color="#C1C7CC" names="Camila" />
-          <CircleInstructor color="#000000" names="Cléber" />
-          <CircleInstructor color="#FF9254" names="Croda" />
-          <CircleInstructor color="#FFCF00" names="Dani" />
-          <CircleInstructor color="#0096E8" names="Dona" />
-          <CircleInstructor color="#00884A" names="Francis" />
-          <CircleInstructor color="#ED0007" names="Ianella" />
-          <CircleInstructor color="#D1E4FF" names="Isadora" />
-          <CircleInstructor color="#791D73" names="Leonardo" />
-          <CircleInstructor color="#00629A" names="Luca" />
+          <CircleInstructor colorInstructor="bg-pink-400" nameInstructor="Agatha" />
+          <CircleInstructor colorInstructor="bg-gray-400" nameInstructor="Camila" />
+          <CircleInstructor colorInstructor="bg-black" nameInstructor="Cléber" />
+          <CircleInstructor colorInstructor="bg-orange-400" nameInstructor="Croda" />
+          <CircleInstructor colorInstructor="bg-yellow-400" nameInstructor="Dani" />
+          <CircleInstructor colorInstructor="bg-blue-400" nameInstructor="Dona" />
+          <CircleInstructor colorInstructor="bg-green-400" nameInstructor="Francis" />
+          <CircleInstructor colorInstructor="bg-red-400" nameInstructor="Ianella" />
+          <CircleInstructor colorInstructor="bg-blue-100" nameInstructor="Isadora" />
+          <CircleInstructor colorInstructor="bg-purple-800" nameInstructor="Leonardo" />
+          <CircleInstructor colorInstructor="bg-blue-600" nameInstructor="Luca" />
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography style={{ display: "flex", gap: "20px" }}>
-          <CircleInstructor color="#FFD9D9" names="Roberta" />
-          <CircleInstructor color="#71767C" names="Vanessa" />
-          <CircleInstructor color="#66B8B2" names="Wilson" />
+        <Typography className="flex gap-5">
+          <CircleInstructor colorInstructor="bg-orange-100" nameInstructor="Roberta" />
+          <CircleInstructor colorInstructor="bg-neutral-500" nameInstructor="Vanessa" />
+          <CircleInstructor colorInstructor="bg-emerald-400" nameInstructor="Wilson" />
         </Typography>
       </AccordionDetails>
     </Accordion>
