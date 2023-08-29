@@ -13,7 +13,7 @@ export default function Home() {
           <div>
             <header className="flex justify-between bg-[#F6F6F6] p-2 rounded-t-lg border-2 border-[#C1C7CC]">
               <div className="flex ">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer">
                   <g clip-path="url(#clip0_1189_4145)">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9431 7.05727C21.4638 7.57797 21.4638 8.42219 20.9431 8.94289L13.8859 16.0001L20.9431 23.0573C21.4638 23.578 21.4638 24.4222 20.9431 24.9429C20.4224 25.4636 19.5782 25.4636 19.0575 24.9429L11.0575 16.9429C10.5368 16.4222 10.5368 15.578 11.0575 15.0573L19.0575 7.05727C19.5782 6.53657 20.4224 6.53657 20.9431 7.05727Z" fill="black"/>
                   <path d="M20 8L12 16L20 24" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,7 +28,7 @@ export default function Home() {
                 <p className="text-xl mx-4">
                   Agosto 2023
                 </p>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"  className="cursor-pointer">
                   <path d="M11.999 8L19.999 16L11.999 24" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
@@ -277,7 +277,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="border-r-2 border-b-2 border-[#C1C7CC] h-36 w-full">
-                  <p className="text-xl bg-">
+                  <p className="text-xl bg-[#007BC0] text-white">
                     30
                   </p>
                   <div className="overflow-x-auto h-28">
@@ -309,7 +309,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"  className="cursor-pointer">
           <path d="M11.999 8L19.999 16L11.999 24" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
