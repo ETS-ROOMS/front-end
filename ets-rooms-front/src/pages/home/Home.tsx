@@ -4,9 +4,9 @@ import ViewCardList from "../../components/view-card-list/ViewCardList";
 
 export default function Home() {
   return (
-    <main className="w-5/6 ml-auto mr-auto mt-6">
+    <main className="w-4/5 ml-auto mr-auto mt-8">
       <Period />
-      <article className="grid grid-cols-3 grid-rows-5 gap-4">
+      <article className="grid grid-flow-col gap-8">
         <ViewCardList namePremise="Ca600 - ETS"/>
         <ViewCardList namePremise="Ca170 - ETS"/>
         <ViewCardList namePremise="Ca140 - ETS"/>
