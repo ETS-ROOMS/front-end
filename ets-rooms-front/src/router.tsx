@@ -7,8 +7,8 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/resume" element={<ResumePage />} />
+        <Route path="/" Component={Home} />
+        <Route path="/resume" Component={ResumePage} />
       </Routes>
     </BrowserRouter>
   );
