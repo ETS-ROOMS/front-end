@@ -1,10 +1,10 @@
 import React from "react";
-import Period from "../../components/period/Period";
-import ViewCardList from "../../components/view-card-list/ViewCardList";
+import ButtomDownload from "../../components/buttom-download/buttomDownload";
 
 export default function Agendar() {
   return (
     <main>
+      <ButtomDownload/>
       AGENDAR (COLOCAR O REPOSITORIO DE CALENDÁRIO)
     </main>
   );
