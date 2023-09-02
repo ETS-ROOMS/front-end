@@ -19,7 +19,7 @@ const ViewCardList = ({ namePremise }) => {
     axios
       .get("http://127.0.0.1:8000/evento/")
       .then((response) => {
-        setRoomsData(response.data.map((room) => {
+        setRoomsData(response.data.results.map((room) => {
           return {
             nome_responsavel: room.nome_responsavel,
             nome_evento: room.nome_evento,
