@@ -23,7 +23,7 @@ export default function Navbar() {
             <ul className="flex text-black">
               <li className="p-4">
                 <a className="text-lg hover:border-b-2 border-b-black" href="/">
-                  Home
+                  Agendar
                 </a>
               </li>
               <li className="p-4">

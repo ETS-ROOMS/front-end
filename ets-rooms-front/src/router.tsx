@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/Home";
 import ResumePage from "./pages/resume-page/ResumePage";
+import Agendar from "./pages/home/Agendar";
+import EditEvent from "./pages/home/EditEvent";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" Component={Home} />
+        <Route path="/" element={<Agendar />} />
         <Route path="/resumo" Component={ResumePage} />
+        <Route path="/editar" element={<EditEvent />} />
       </Routes>
     </BrowserRouter>
   );
