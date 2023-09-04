@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtomDownload from "../../components/buttom-download/buttomDownload";
 import axios from 'axios';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+import "react-calendar/dist/Calendar.css";
 import Calendar from 'react-calendar';
 import { Modal, Button, TextField, Select, MenuItem, Grid, InputLabel, Autocomplete } from '@mui/material';
 
@@ -218,6 +219,8 @@ const EventFormModal = ({
   );
 };
 
+export const url = "https://glowing-parakeet-vjgxwpqgrp4hw45x-8000.app.github.dev";
+
 
 function AgendarPage() {
   const [showForm, setShowForm] = useState(false);
@@ -234,7 +237,7 @@ function AgendarPage() {
   
   const fetchEventos = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/evento/?format=json");
+      const response = await axios.get(`${url}/evento/?format=json`);
       setEventos(response.data);
     } catch (error) {
       console.error("Erro ao buscar Eventos:", error);
@@ -261,7 +264,7 @@ function AgendarPage() {
     };
     
     try {
-      await axios.post("http://127.0.0.1:8000/evento/", eventData);
+      await axios.post(`${url}/evento/`, eventData);
       fetchEventos();
       // Swal.fire({
       //   icon: "success",
