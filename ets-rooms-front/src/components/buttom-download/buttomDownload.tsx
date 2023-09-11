@@ -74,10 +74,11 @@ function Modal() {
     }
   };
 
+
   return (
     <div>
       <button
-        className="bg-[#007BC0] w-10 h-10 rounded-full flex justify-center items-center hover:bg-[#00629A]"
+        className="bg-[#007BC0] w-10 h-10 rounded-full flex justify-center items-center hover:bg-[#00629A] absolute top-0 right-0 my-24 mr-16"
         onClick={openModal}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,9 +93,6 @@ function Modal() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="modal bg-white p-4 rounded-lg w-[400px]">
-            <span className="close absolute top-2 right-2 cursor-pointer" onClick={closeModal}>
-              &times;
-            </span>
             <h2 className="text-xl font-semibold pb-2 border-b border-gray-300">Download em Excel</h2>
             <div></div>
 
@@ -148,11 +146,19 @@ function Modal() {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="bg-[#007BC0] text-white rounded-lg p-2 px-4 hover:bg-[#00629A] cursor-pointer">
-                Baixar
-              </button>
+              <div className='flex gap-8 justify-end'>
+                <button
+                  type="submit"
+                  className=" text-black rounded-lg p-2 px-4 hover:bg-[#d1d1d182] cursor-pointer" onClick={closeModal}>
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#007BC0] text-white rounded-lg p-2 px-4 hover:bg-[#00629A] cursor-pointer" onClick={handleSubmit}>
+                  Baixar
+                </button>
+              </div>
+
             </form>
           </div>
         </div>
