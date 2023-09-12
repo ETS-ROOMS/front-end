@@ -46,10 +46,10 @@ export default function InputEventList(props) {
 
   return (
     <>
-      <div className="w-full h-1/2 bg-white border-2 border-gray-400 rounded drop-shadow-md hover:border-gray-500">
+      <div className="w-11/12 h-1/2 bg-white rounded border border-gray-500 hover:border-black focus:border-black">
         <div className="flex flex-row">
           <input
-            className="w-5/6 h-12 pl-3 outline-none text-sm"
+            className="w-5/6 h-12 pl-3 outline-none text-sm rounded"
             type="text"
             value={event}
             onChange={handleInputChange}
@@ -64,7 +64,7 @@ export default function InputEventList(props) {
             <AddIcon size={20} />
           </button>
         </div>
-        <div className="w-full h-4/6 bg-gray-200 overflow-y-scroll ">
+        <div className="w-full h-4/6 overflow-y-scroll ">
           <div className="flex justify-center p-3 flex-col gap-3">
             {eventList.map((evt, index) => (
               <div
@@ -73,7 +73,7 @@ export default function InputEventList(props) {
               >
                 {evt}
                 <button
-                  className="w-10 h-8 p-4 cursor-pointer bg-gray-200 border-gray-400 "
+                  className="w-10 h-8 p-4 cursor-pointer"
                   onClick={() => handleDeleteEvent(index)}
                 >
                   <DeleteIcon size={24} color="#ED0007" />

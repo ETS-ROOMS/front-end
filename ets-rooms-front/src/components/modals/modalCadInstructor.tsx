@@ -4,13 +4,15 @@ import { Box, Modal, Button } from "@mui/material";
 import Input from "../inputs/Input";
 import InputNameInstructor from "../inputs/InputNameInstructor";
 import InputEventList from "../inputs/InputEventList";
+import CircleInstructor from "../circle-instructor/CircleInstructor";
+import Colorful from "../colorful/Colorful";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 710,
+  width: 810,
   bgcolor: "background.paper",
   borderRadius: 2,
   boxShadow: 24,
@@ -47,7 +49,7 @@ export default function ModalCadInstructors() {
               <h1 className="text-2xl font-normal">Cadastrar instrutor</h1>
             </div>
             <div className="w-full h-5/6 flex items-center">
-              <div className="w-3/6 h-[90%] flex flex-col items-start gap-6 bg-amber-300">
+              <div className="w-3/6 h-[90%] flex flex-col items-start gap-6 ">
                 <InputNameInstructor
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
@@ -55,7 +57,25 @@ export default function ModalCadInstructors() {
                 />
                 <Input placeholder="*EDV" />
                 <Input placeholder="*E-mail do instrutor" />
-                <InputEventList placeholder="*Adicionar matéria ou evento"/>
+                <InputEventList placeholder="*Adicionar matéria ou evento" />
+              </div>
+              <div className="w-2/4 h-[90%]">
+                <div className="w-full h-5/6 flex-row-reverse grid grid-cols-2 grid-rows-[50%,auto]">
+                  <div className="grid grid-rows-1 row-span-1">
+                    <p className="text-gray-400 text-sm">Sua Cor:</p>
+                    <CircleInstructor
+                      color={selectedColor}
+                      names={inputValue}
+                    />
+                  </div>
+                  <div className="grid grid-rows-1 row-span-1">
+                    <p className="text-gray-400 text-sm">Escolher Cor:</p>
+                    <Colorful
+                      selectedColor={selectedColor}
+                      onColorChange={handleColorChange}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

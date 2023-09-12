@@ -4,7 +4,7 @@ export default function InputNameInstructor(props) {
   return (
     <>
       <input
-        className="w-full h-12 pl-3 border-2 border-gray-400 rounded outline-none drop-shadow-md text-sm hover:border-gray-500 focus:border-blue-400"
+        className="w-11/12 h-12 pl-3 rounded outline-none drop-shadow-md text-sm border border-gray-500 hover:border-black focus:border-black"
         type="text"
         placeholder={props.placeholder}
         maxLength={20}
