@@ -5,6 +5,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import "react-calendar/dist/Calendar.css";
 import Calendar from 'react-calendar';
 import { Modal, Button, TextField, Select, MenuItem, Grid, InputLabel, Autocomplete } from '@mui/material';
+import DetalheEvento from "../../components/detalhe-evento/detalheEvento";
 
 const EventFormModal = ({
   showForm,
@@ -331,7 +332,8 @@ export default function Agendar() {
   return (
     <main>
       <ButtomDownload/>
-      <AgendarPage />     
+      <AgendarPage />
+      <DetalheEvento/>     
     </main>
   );
 }
