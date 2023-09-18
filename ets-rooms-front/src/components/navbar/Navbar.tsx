@@ -3,7 +3,7 @@ import React from "react";
 export default function Navbar() {
   return (
     <>
-      <header className="sticky top-0 z-10 ">
+      <header className="sticky top-0 z-10 bg-white">
         <div>
           <img
             className="w-full h-1 flex justify-center items-center object-cover"
@@ -23,21 +23,21 @@ export default function Navbar() {
             <ul className="flex text-black">
               <li className="p-4">
                 <a className="text-lg hover:border-b-2 border-b-black" href="/">
-                  Home
+                  Agendar
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/">
+                <a className="text-lg hover:border-b-2 border-b-black" href="/mapa">
                   Ver mapa geral
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/">
+                <a className="text-lg hover:border-b-2 border-b-black" href="/resumo">
                   Resumo de hoje
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/">
+                <a className="text-lg hover:border-b-2 border-b-black" href="/painel">
                   Painel de controle
                 </a>
               </li>
