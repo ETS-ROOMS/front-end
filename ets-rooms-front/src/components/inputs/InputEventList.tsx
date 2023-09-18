@@ -46,10 +46,11 @@ export default function InputEventList(props) {
 
   return (
     <>
-      <div className="w-full h-1/2 bg-white border-2 border-gray-400 rounded drop-shadow-md hover:border-gray-500">
+      <div className="w-11/12 h-1/2 bg-white drop-shadow-md rounded border border-gray-500 hover:border-black focus:border-black">
         <div className="flex flex-row">
           <input
-            className="w-5/6 h-12 pl-3 outline-none text-sm"
+            className="w-5/6 h-12 pl-3 outline-none text-base rounded"
+            required title="Por favor, preencha este campo."
             type="text"
             value={event}
             onChange={handleInputChange}
@@ -64,37 +65,37 @@ export default function InputEventList(props) {
             <AddIcon size={20} />
           </button>
         </div>
-        <div className="w-full h-4/6 bg-gray-200 overflow-y-scroll ">
+        <div className="w-full h-4/6 overflow-y-scroll ">
           <div className="flex justify-center p-3 flex-col gap-3">
             {eventList.map((evt, index) => (
               <div
-                className="w-[94%] h-8 text-sm pl-2 rounded flex justify-between items-center bg-white"
+                className="w-11/12 h-8 text-base pl-2 rounded flex justify-between items-center bg-gray-100"
                 key={index}
               >
                 {evt}
                 <button
-                  className="w-10 h-8 p-4 cursor-pointer bg-gray-200 border-gray-400 "
+                  className="w-10 h-8 p-4 cursor-pointer flex justify-center items-center bg-white"
                   onClick={() => handleDeleteEvent(index)}
                 >
-                  <DeleteIcon size={24} color="#ED0007" />
+                  <p><DeleteIcon size={24} color="#ED0007" /></p>
                 </button>
               </div>
             ))}
           </div>
         </div>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

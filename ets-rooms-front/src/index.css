@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Icones";
+    src: url("fonts/icones.ttf") format("ttf");
+}
+
 ::-webkit-scrollbar {
 width: 5px;
 }
