@@ -6,6 +6,8 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from 'react-calendar';
 import { Modal, Button, TextField, Select, MenuItem, Grid, InputLabel, Autocomplete } from '@mui/material';
 import DetalheEvento from "../../components/detalhe-evento/detalheEvento";
+import { ButtonAdmin } from "../../components/floating-buttom-admin/button";
+
 
 const EventFormModal = ({
   showForm,
@@ -331,6 +333,7 @@ function AgendarPage() {
 export default function Agendar() {
   return (
     <main>
+      <ButtonAdmin/>
       <ButtomDownload/>
       <AgendarPage />
       <DetalheEvento/>     
