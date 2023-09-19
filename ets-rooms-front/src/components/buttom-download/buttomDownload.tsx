@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dataInicio, setDataInicio] = useState(null);
