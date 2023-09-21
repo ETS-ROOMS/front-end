@@ -4,6 +4,7 @@ import Input from "../inputs/Input";
 import InputSelect from "../inputs/InputSelect";
 import PeopleIcon from "../../components-icons/PeopleIcon";
 import RobotHead from "../../components-icons/RobotHead";
+import DesktopIcon from "../../components-icons/DesktopIcon";
 import DesktopApplication from "../../components-icons/DesktopApplication";
 
 const style = {
@@ -49,24 +50,24 @@ export default function ModalCadRoom() {
                   <div className="flex flex-col justify-between mt-4">
                     <ul className="flex flex-col gap-1">
                       <li className="flex items-center gap-3">
-                        <PeopleIcon size={30} color="#60a5fa"/>
+                        <PeopleIcon size={30} color="#60a5fa" />
                         Lotação
                       </li>
                       <li className="flex items-center gap-3">
-                        <DesktopApplication size={30} color="#60a5fa"/>
-                        Lotação
+                        <DesktopApplication size={30} color="#60a5fa" />
+                        Computador
                       </li>
                       <li className="flex items-center gap-3">
-                        <RobotHead size={30} color="#60a5fa"/>
-                        Lotação
+                        <RobotHead size={30} color="#60a5fa" />
+                        Postos de robótica
                       </li>
                       <li className="flex items-center gap-3">
-                        <DesktopApplication size={30} color="#60a5fa"/>
-                        Lotação
+                        <DesktopIcon size={30} color="#60a5fa" />
+                        Televisão
                       </li>
                       <li className="flex items-center gap-3">
-                        <DesktopApplication size={30} color="#60a5fa"/>
-                        Lotação
+                        <DesktopIcon size={30} color="#60a5fa" />
+                        Quadro branco
                       </li>
                     </ul>
                   </div>
