@@ -5,7 +5,7 @@ import Calendar from 'react-calendar'; // Importe os outros componentes necessá
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import EventFormModal from '../event-form-modal/EventFormModal';
 
-export default function CalendarioSala({ data }) {
+export default function CalendarioSala({ ids_salas }) {
     const [showForm, setShowForm] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [startTime, setStartTime] = useState("07:30");
