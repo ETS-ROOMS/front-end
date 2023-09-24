@@ -5,7 +5,7 @@ import Calendar from 'react-calendar'; // Importe os outros componentes necessá
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import EventFormModal from '../event-form-modal/EventFormModal';
 
-export default function CalendarioSala({ ids_salas }) {
+export default function CalendarioSala({ sala }) {
     const [showForm, setShowForm] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [startTime, setStartTime] = useState("07:30");
@@ -71,14 +71,14 @@ export default function CalendarioSala({ ids_salas }) {
     };
 
     return (
-        <div className="p-4 h-screen">
+        <div className="p-4">
             <div className="flex items-center space-x-48 ">
                 <div className="">
-                    <h1 className="font-bold">Ca600 - Lab 01</h1>
+                    <h1 className="font-bold">{sala.nome_sala}</h1>
                 </div>
             </div>
             <Calendar
-                className=" rounded-lg shadow-md p-2 h-65"
+                className="rounded-lg shadow-md p-2 h-65"
                 prev2Label={null}
                 next2Label={null}
                 prevLabel={<MdKeyboardArrowLeft className="text-4xl text-gray-500" />}
