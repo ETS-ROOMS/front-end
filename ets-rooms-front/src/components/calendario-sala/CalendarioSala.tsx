@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from 'react-calendar'; // Importe os outros componentes necessários
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import EventFormModal from '../event-form-modal/EventFormModal';
+import { API_URL } from '../../config';
 
 export default function CalendarioSala({ sala }) {
     const [showForm, setShowForm] = useState(false);
@@ -18,7 +19,7 @@ export default function CalendarioSala({ sala }) {
 
     const fetchEventos = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/evento/?format=json`);
+            const response = await axios.get(`${API_URL}/evento/?format=json`);
             setEventos(response.data);
         } catch (error) {
             console.error("Erro ao buscar Eventos:", error);
@@ -46,7 +47,7 @@ export default function CalendarioSala({ sala }) {
         };
 
         try {
-            await axios.post(`http://127.0.0.1:8000/evento/`, eventData);
+            await axios.post(`${API_URL}/evento/`, eventData);
             fetchEventos();
         } catch (error) {
             console.error("Erro ao enviar Evento:", error);
