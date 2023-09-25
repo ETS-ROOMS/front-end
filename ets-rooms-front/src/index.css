@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Icones";
+    src: url("fonts/icones.ttf") format("ttf");
+}
+
 ::-webkit-scrollbar {
 width: 5px;
 }
@@ -153,7 +158,7 @@ border-radius: 10px;
 
 
 .react-calendar__month-view__weekNumbers .react-calendar__tile {
-color: #71767C;
+    color: #71767C;
 }
 
 /* DatePicker.css */
