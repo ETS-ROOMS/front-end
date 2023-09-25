@@ -4,6 +4,7 @@ import ButtomDownload from "../../components/buttom-download/buttomDownload";
 import CalendarioSala from '../../components/calendario-sala/CalendarioSala';
 import CalendarioforSala from "./CalendarioforSala";
 import { API_URL } from '../../config';
+import { ButtonAdmin } from '../../components/floating-buttom-admin/button';
 
 function Agendar() {
   const [salas, setSalas] = useState({}); // { 'nome do predio': [{}, {}, {}] } array de salas dentro de cada um
@@ -34,6 +35,7 @@ function Agendar() {
   return (
     <main>
       <ButtomDownload />
+      <ButtonAdmin/>
       <div className='flex flex-col'>
         {Object.entries(salas).map(([predio, salas]) => (
           <LinhaCalendarios salas={salas} predio={predio}/>
