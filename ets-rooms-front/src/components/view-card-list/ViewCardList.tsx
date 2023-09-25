@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorBoundary from "react-error-boundary";
 import CardRooms from "../card-rooms/CardRooms";
+import { API_URL } from "../../config";
 
 interface RoomData {
   nome_responsavel: string;
@@ -17,7 +18,7 @@ const ViewCardList = ({ namePremise }) => {
   useEffect(() => {
     // Fazer a solicitação GET à API Django aqui
     axios
-      .get("http://127.0.0.1:8000/evento/")
+      .get(`${API_URL}/evento/`)
       .then((response) => {
         setRoomsData(
           response.data.results.map((room) => {
