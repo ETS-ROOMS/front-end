@@ -8,7 +8,19 @@ interface CardRoomsProps {
   hora_fim: string | null;
 }
 
+function formatarHora(hora: string | null): string {
+  if (!hora) return "";
+
+  const [horas, minutos] = hora.split(":");
+  const horaFormatada = `${horas}:${minutos}`;
+
+  return horaFormatada;
+}
+
 export default function CardRooms(props: CardRoomsProps) {
+  const hora_inicio = formatarHora(props.hora_inicio);
+  const hora_fim = formatarHora(props.hora_fim);
+
   return (
     <section className="w-5/6 h-1/4 rounded bg-white p-1 flex shadow-md">
       <div className="w-2 h-full rounded-s bg-purple-800"></div>
@@ -16,9 +28,9 @@ export default function CardRooms(props: CardRoomsProps) {
         <div className="flex items-center justify-between">
           <h1 className="text-base font-medium">{props.nome_evento}</h1>
           <div className="flex">
-            <p>{props.hora_inicio}</p>
+            <p>{hora_inicio}</p>
             <p>-</p>
-            <p>{props.hora_fim}</p>
+            <p>{hora_fim}</p>
           </div>
         </div>
         <div>
