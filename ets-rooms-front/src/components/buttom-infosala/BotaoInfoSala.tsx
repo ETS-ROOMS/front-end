@@ -5,21 +5,17 @@ import Carousel from 'react-material-ui-carousel';
 const InfoSala: React.FC = () => {
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const toggleModal = () => {
+    setOpen(p => !p);
   };
 
   const salaInfo = {
     nome: 'Sala verde',
-    localizacao: 'Térreo',
+    localizacao: 'Subsolo',
     lotacao: '19',
-    postos: '0',
-    computadores: '18',
-    quadroBranco: '0',
+    postos: '4',
+    computadores: '0',
+    quadroBranco: '1',
     televisao: '1',
   };
 
@@ -27,12 +23,30 @@ const InfoSala: React.FC = () => {
 
   return (
     <div>
-      <Button onClick={handleClickOpen} variant="contained" color="primary">
-        Mostrar Informações
-      </Button>
+      <button onClick={toggleModal}>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_d_1581_2458)">
+        <circle cx="13.8806" cy="11.8806" r="8.88056" fill="#D1E4FF" stroke="#007BC0" stroke-width="2"/>
+        <path d="M13.8809 8.99878H13.8891" stroke="#007BC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12.9199 11.8806H13.8805V15.7231H14.8411" stroke="#007BC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <filter id="filter0_d_1581_2458" x="0" y="0" width="27.7607" height="27.7611" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feOffset dy="2"/>
+        <feGaussianBlur stdDeviation="2"/>
+        <feComposite in2="hardAlpha" operator="out"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1581_2458"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1581_2458" result="shape"/>
+        </filter>
+        </defs>
+        </svg>
+      </button>
       {open ? (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <div className="modal bg-white p-4 rounded-lg w-[400px]">
+        <div className="fixed  flex z-50 drop-shadow-xl">
+        <div className="modal bg-white p-4 rounded-lg w-[300px]">
             <h2 className="text-xl font-semibold pb-2 border-b border-gray-300">
               {salaInfo.nome}
             </h2>
