@@ -101,11 +101,11 @@ const EventFormModal = ({
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <p>*Início</p>
-                      <InputDate sizeW=" w-2/5" />
+                      <InputDate sizeW="w-2/5" />
                     </div>
                     <div className="flex items-center gap-2">
                       <p>*Fim</p>
-                      <InputDate sizeW=" w-2/5" />
+                      <InputDate sizeW="w-2/5" />
                     </div>
                   </div>
                 </div>
