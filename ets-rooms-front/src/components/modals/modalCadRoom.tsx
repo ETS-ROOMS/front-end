@@ -41,34 +41,61 @@ export default function ModalCadRoom() {
             <div className="w-full h-5/6 flex items-center hover:bg-red-400 transition-all ease-in-out">
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
                 <Input placeholder="*Nome da sala" />
-                <InputSelect placeholder="*Prédio da sala" />
+                <InputSelect/>
                 <Input placeholder="*Localização da sala" />
                 <div className="w-full h-3/6 hover:bg-purple-400 transition-all ease-in-out">
                   <h1 className="text-gray-400 text-sm">
                     Preencha a seguir com as quantidades na sala:
                   </h1>
                   <div className="flex flex-col justify-between mt-4">
-                    <ul className="flex flex-col gap-1">
-                      <li className="flex items-center gap-3">
-                        <PeopleIcon size={30} color="#60a5fa" />
-                        Lotação
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <DesktopApplication size={30} color="#60a5fa" />
-                        Computador
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <RobotHead size={30} color="#60a5fa" />
-                        Postos de robótica
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <DesktopIcon size={30} color="#60a5fa" />
-                        Televisão
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <DesktopIcon size={30} color="#60a5fa" />
-                        Quadro branco
-                      </li>
+                    <ul className="flex flex-col">
+                      <div className="w-2/3 h-full flex flex-col gap-2">
+                        <div className="flex w-full justify-between">
+                          <li className="flex items-center gap-3">
+                            <PeopleIcon size={30} color="#60a5fa" />
+                            Lotação
+                          </li>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                            <h3 className="text-sm">17</h3>
+                          </div>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <li className="flex items-center gap-3">
+                            <DesktopApplication size={30} color="#60a5fa" />
+                            Computador
+                          </li>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                            <h3 className="text-sm">17</h3>
+                          </div>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <li className="flex items-center gap-3">
+                            <RobotHead size={30} color="#60a5fa" />
+                            Postos de robótica
+                          </li>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                            <h3 className="text-sm">00</h3>
+                          </div>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <li className="flex items-center gap-3">
+                            <DesktopIcon size={30} color="#60a5fa" />
+                            Televisão
+                          </li>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                            <h3 className="text-sm">01</h3>
+                          </div>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <li className="flex items-center gap-3">
+                            <DesktopIcon size={30} color="#60a5fa" />
+                            Quadro branco
+                          </li>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                            <h3 className="text-sm">02</h3>
+                          </div>
+                        </div>
+                      </div>
                     </ul>
                   </div>
                 </div>
