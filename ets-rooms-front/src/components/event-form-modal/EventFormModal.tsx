@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import { Box, Modal, Button } from "@mui/material";
+import { Box, Modal} from "@mui/material";
 import Input from "../inputs/Input";
 import InputSelect from "../inputs/InputSelect";
-import PeopleIcon from "../../components-icons/PeopleIcon";
-import RobotHead from "../../components-icons/RobotHead";
-import DesktopIcon from "../../components-icons/DesktopIcon";
-import DesktopApplication from "../../components-icons/DesktopApplication";
-import InputAutocomplete from "../inputs/InputAutocomplete";
 import InputPassword from "../inputs/InputPassword";
 import InputDate from "../inputs/InputDate";
 import ButtonCancel from "../button-cancel/ButtonCancel";
 import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import InputCheckbox from "../inputs/InputCheckbox";
+import InputTimer from "../inputs/InputTimer";
 
 const style = {
   position: "absolute",
@@ -88,29 +84,38 @@ const EventFormModal = ({
       >
         <Box sx={style}>
           <div className="w-[94%] h-[94%]">
-            <div className="w-full h-12 border-b border-gray-400">
+            <div className="w-full h-12 border-b">
               <h1 className="text-2xl font-normal">Solicitar agendamento</h1>
             </div>
-            <div className="w-full h-5/6 flex items-center hover:bg-yellow-300">
-              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-orange-700">
-                <InputSelect />
+            <div className="w-full h-5/6 flex items-center">
+              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4">
+                <InputSelect/>
                 <InputSelect />
                 <InputPassword placeholder="*EDV ou senha" />
                 <Input placeholder="*E-mail do responsável" />
                 <Input placeholder="Descrição" />
               </div>
-              <div className="w-2/4 h-[90%] hover:bg-zinc-400">
-                <div className="w-full h-2/6 hover:bg-lime-600">
+              <div className="w-2/4 h-[90%]">
+                <div className="w-full h-2/6">
                   <div className="flex flex-col gap-5">
                     <div className="gap-2">
-                      <div className="flex items-center gap-2">
-                        <InputDate sizeW="w-2/5" />
-                        <InputDate sizeW="w-2/5" />
+                      <div className="grid grid-flow-col grid-rows-2 gap-3">
+                        <div className="w-full flex items-center gap-3">
+                          <p>*Início</p>
+                          <InputDate sizeW="w-32" />
+                          <InputTimer sizeW="w-24" />
+                        </div>
+                        <div className="w-full flex items-center gap-3">
+                          <p className="pr-3">*Fim</p>
+                          <InputDate sizeW="w-32" />
+                          <InputTimer sizeW="w-24" />
+                          <p className="text-gray-400">30min</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="w-full ">
+                <div className="w-full h-3/5">
                   <InputCheckbox textCheck="Recorrente" />
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
