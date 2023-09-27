@@ -9,6 +9,9 @@ import DesktopApplication from "../../components-icons/DesktopApplication";
 import InputAutocomplete from "../inputs/InputAutocomplete";
 import InputPassword from "../inputs/InputPassword";
 import InputDate from "../inputs/InputDate";
+import ButtonCancel from "../button-cancel/ButtonCancel";
+import ButtonConfirm from "../button-confirm/ButtonConfirm";
+import InputCheckbox from "../inputs/InputCheckbox";
 
 const style = {
   position: "absolute",
@@ -97,17 +100,22 @@ const EventFormModal = ({
                 <Input placeholder="Descrição" />
               </div>
               <div className="w-2/4 h-[90%] hover:bg-zinc-400">
-                <div className="w-full h-2/6 hoverbg-lime-600">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                      <p>*Início</p>
-                      <InputDate sizeW="w-2/5" />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <p>*Fim</p>
-                      <InputDate sizeW="w-2/5" />
+                <div className="w-full h-2/6 hover:bg-lime-600">
+                  <div className="flex flex-col gap-5">
+                    <div className="gap-2">
+                      <div className="flex items-center gap-2">
+                        <InputDate sizeW="w-2/5" />
+                        <InputDate sizeW="w-2/5" />
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div className="w-full ">
+                  <InputCheckbox textCheck="Recorrente" />
+                </div>
+                <div className="w-full h-full flex justify-between pt-3">
+                  <ButtonCancel nameButton="Cancelar" />
+                  <ButtonConfirm nameButton="Cadastrar" />
                 </div>
               </div>
             </div>

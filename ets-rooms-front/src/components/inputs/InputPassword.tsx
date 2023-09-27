@@ -21,7 +21,7 @@ export default function InputPassword(props) {
         className="absolute top-0 right-0 w-12 h-full flex items-center justify-center"
         onClick={togglePasswordVisibility}
       >
-        {showPassword ? <WatchOnIcon size={30} /> : <WatchOffDisabled size={30}/>}
+        {showPassword ? <WatchOnIcon size={30} /> : <WatchOffDisabled size={30} />}
       </button>
     </div>
   );
