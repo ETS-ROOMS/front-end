@@ -41,7 +41,7 @@ export default function ModalCadRoom() {
             <div className="w-full h-5/6 flex items-center hover:bg-red-400 transition-all ease-in-out">
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
                 <Input placeholder="*Nome da sala" />
-                <InputSelect/>
+                <InputSelect />
                 <Input placeholder="*Localização da sala" />
                 <div className="w-full h-3/6 hover:bg-purple-400 transition-all ease-in-out">
                   <h1 className="text-gray-400 text-sm">

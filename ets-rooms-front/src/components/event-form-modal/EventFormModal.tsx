@@ -46,23 +46,22 @@ const EventFormModal = ({
   };
 
   function generateTimeOptions() {
-    const options: string[] = []; // Especifica explicitamente o tipo como string[]
-    const startTime = 7 * 60 + 30; // 7:30 em minutos
-    const endTime = 17 * 60; // 17:00 em minutos
-    const interval = 30; // Intervalo de 30 minutos
-  
+    const options: string[] = [];
+    const startTime = 7 * 60 + 30;
+    const endTime = 17 * 60;
+    const interval = 30;
+
     for (let minutes = startTime; minutes <= endTime; minutes += interval) {
       const hour = Math.floor(minutes / 60);
       const minute = minutes % 60;
-  
-      const formattedTime = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+
+      const formattedTime = `${hour.toString().padStart(2, "0")}:${minute
+        .toString()
+        .padStart(2, "0")}`;
       options.push(formattedTime);
     }
-  
     return options;
   }
-  
-
   const top100Films = [
     { label: "Aghata" },
     { label: "Camila" },
@@ -193,9 +192,9 @@ const EventFormModal = ({
                           <InputTimer
                             sizeW="w-24"
                             sizeH="h-10"
-                            value={startTime}
+                            value={endTime}
                             options={generateTimeOptions()}
-                            onChange={(e) => setStartTime(e.target.value)}
+                            onChange={(e) => setEndTime(e.target.value)}
                           />
                           <p className="text-gray-400">30min</p>
                         </div>
@@ -208,7 +207,7 @@ const EventFormModal = ({
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
                   <ButtonCancel nameButton="Cancelar" />
-                  <ButtonConfirm nameButton="Cadastrar" />
+                  <ButtonConfirm nameButton="Agendar sala" />
                 </div>
               </div>
             </div>
