@@ -5,16 +5,20 @@ import Agendar from "./pages/home/Agendar";
 import EditEvent from "./pages/home/EditEvent";
 import { Mapa } from "./pages/mapa/Mapa";
 import ModalCadInstructors from "./components/modals/modalCadInstructor";
+import ModalCadRoom from "./components/modals/modalCadRoom";
+import ModalEditAgendamento from "./components/modals/modalEditAgendamento";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Agendar />} />
+        <Route path="/" Component={Agendar} />
         <Route path="/resumo" Component={ResumePage} />
-        <Route path="/editar" element={<EditEvent />} />
-        <Route path="/mapa" element={<Mapa />} />
-        <Route path="/modal" element={<ModalCadInstructors />} />
+        <Route path="/editar" Component={EditEvent} />
+        <Route path="/mapa" Component={Mapa} />
+        <Route path="/modal" Component={ModalCadInstructors} />
+        <Route path="/modal2" Component={ModalCadRoom} />
+        <Route path="/modal3" Component={ModalEditAgendamento} />
       </Routes>
     </BrowserRouter>
   );
