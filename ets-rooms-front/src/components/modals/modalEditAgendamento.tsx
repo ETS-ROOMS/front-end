@@ -5,6 +5,7 @@ import ButtonCancel from "../button-cancel/ButtonCancel";
 import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import InputDisable from "../inputs/InputDisable";
 import TrashIcon from "../../components-icons/TrashIcon";
+import DeleteAlert from "./alerts/DeleteAlert";
 
 const style = {
   position: "absolute",
@@ -45,7 +46,7 @@ export default function ModalEditAgendamento() {
           <div className="w-[94%] h-[94%] hover:bg-yellow-400 transition-all ease-in-out">
             <div className="w-full h-12 bg border-b border-gray-400 hover:bg-blue-400 transition-all ease-in-out flex justify-between">
               <h1 className="text-2xl font-normal">Editar agendamento</h1>
-              <button onClick={testeLixeira}>
+              <button onClick={DeleteAlert}>
                 <TrashIcon size={30} color="#000" />
               </button>
             </div>
