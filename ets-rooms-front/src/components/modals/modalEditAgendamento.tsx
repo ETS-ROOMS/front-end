@@ -4,6 +4,7 @@ import Input from "../inputs/Input";
 import ButtonCancel from "../button-cancel/ButtonCancel";
 import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import InputDisable from "../inputs/InputDisable";
+import TrashIcon from "../../components-icons/TrashIcon";
 
 const style = {
   position: "absolute",
@@ -28,6 +29,10 @@ export default function ModalEditAgendamento() {
   const handleClose = () => setOpen(false);
   const [inputValue, setInputValue] = useState("");
 
+  const testeLixeira = () => {
+    alert("Deseja excluir este item?");
+  };
+
   const handleInputChange = (value) => {
     setInputValue(value);
   };
@@ -38,8 +43,11 @@ export default function ModalEditAgendamento() {
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <div className="w-[94%] h-[94%] hover:bg-yellow-400 transition-all ease-in-out">
-            <div className="w-full h-12 bg border-b border-gray-400 hover:bg-blue-400 transition-all ease-in-out">
+            <div className="w-full h-12 bg border-b border-gray-400 hover:bg-blue-400 transition-all ease-in-out flex justify-between">
               <h1 className="text-2xl font-normal">Editar agendamento</h1>
+              <button onClick={testeLixeira}>
+                <TrashIcon size={30} color="#000" />
+              </button>
             </div>
             <div className="w-full h-5/6 flex items-center hover:bg-red-400 transition-all ease-in-out">
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
@@ -50,12 +58,15 @@ export default function ModalEditAgendamento() {
                   onInputChange={handleInputChange}
                   placeholder="*Select materia"
                 />
+                
                 <Input
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
                   placeholder="*EDV ou senha"
                 />
+
                 <InputDisable value="Leonardo.Oliveira@br.bosch.com" disabled />
+
                 <Input
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
