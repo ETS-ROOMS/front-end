@@ -6,6 +6,7 @@ import EditEvent from "./pages/home/EditEvent";
 import { Mapa } from "./pages/mapa/Mapa";
 import ModalCadInstructors from "./components/modals/modalCadInstructor";
 import ModalCadRoom from "./components/modals/modalCadRoom";
+import ModalEditAgendamento from "./components/modals/modalEditAgendamento";
 
 export default function Router() {
   return (
@@ -17,6 +18,7 @@ export default function Router() {
         <Route path="/mapa" Component={Mapa} />
         <Route path="/modal" Component={ModalCadInstructors} />
         <Route path="/modal2" Component={ModalCadRoom} />
+        <Route path="/modal3" Component={ModalEditAgendamento} />
       </Routes>
     </BrowserRouter>
   );
