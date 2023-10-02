@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Box, Modal, Button } from "@mui/material";
-import InputNameInstructor from "../inputs/InputNameInstructor";
+import Input from "../inputs/Input";
+import ButtonCancel from "../button-cancel/ButtonCancel";
+import ButtonConfirm from "../button-confirm/ButtonConfirm";
+import InputDisable from "../inputs/InputDisable";
 
 const style = {
   position: "absolute",
@@ -40,8 +43,29 @@ export default function ModalEditAgendamento() {
             </div>
             <div className="w-full h-5/6 flex items-center hover:bg-red-400 transition-all ease-in-out">
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
-              <input className="w-11/12 h-12 pl-3 rounded outline-none drop-shadow-md text-base border border-gray-500 hover:border-black hover:bg-gray-100 focus:border-black focus:bg-gray-100" disabled value="Leonardo" />
+                <InputDisable value="Leonardo" disabled />
+
+                <Input
+                  inputValue={inputValue}
+                  onInputChange={handleInputChange}
+                  placeholder="*Select materia"
+                />
+                <Input
+                  inputValue={inputValue}
+                  onInputChange={handleInputChange}
+                  placeholder="*EDV ou senha"
+                />
+                <InputDisable value="Leonardo.Oliveira@br.bosch.com" disabled />
+                <Input
+                  inputValue={inputValue}
+                  onInputChange={handleInputChange}
+                  placeholder="*Descrição"
+                />
               </div>
+            </div>
+            <div className="w-full h-full flex justify-end pt-3">
+              <ButtonCancel text-blue-600 nameButton="Cancelar" />
+              <ButtonConfirm nameButton="Editar" />
             </div>
           </div>
         </Box>
