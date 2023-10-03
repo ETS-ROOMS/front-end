@@ -1,28 +1,35 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogContent, List, ListItem, ListItemText, DialogActions, IconButton, Typography, Paper } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 
-const InfoSala: React.FC = () => {
+type InfoSalaProps = {
+  nome_sala: string;
+  localizacao_sala: string;
+  capacidade: number;
+  computador: number;
+  quadro_branco: number;
+  televisao: number;
+  projetor: number;
+};
+
+const InfoSala: React.FC<InfoSalaProps> = ({
+  nome_sala,
+  capacidade,
+  localizacao_sala,
+  televisao,
+  computador,
+  projetor,
+  quadro_branco
+}) => {
   const [open, setOpen] = useState(false);
 
   const toggleModal = () => {
     setOpen(p => !p);
   };
 
-  const salaInfo = {
-    nome: 'Sala verde',
-    localizacao: 'Subsolo',
-    lotacao: '19',
-    postos: '4',
-    computadores: '0',
-    quadroBranco: '1',
-    televisao: '1',
-  };
-
   const salaImages = ['/sala_verde1.png', '/sala_verde2.png'];
 
   return (
-    <div>
+    <div className="relative">
       <button onClick={toggleModal}>
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_1581_2458)">
@@ -45,10 +52,10 @@ const InfoSala: React.FC = () => {
         </svg>
       </button>
       {open ? (
-        <div className="fixed  flex z-50 drop-shadow-xl">
+        <div className="absolute top-[90%] bg-white flex z-50 drop-shadow-xl rounded border">
         <div className="modal bg-white p-4 rounded-lg w-[300px]">
             <h2 className="text-xl font-semibold pb-2 border-b border-gray-300">
-              {salaInfo.nome}
+              {nome_sala}
             </h2>
 
           <div className='flex justify-between text-sm'>
@@ -65,7 +72,7 @@ const InfoSala: React.FC = () => {
                 </clipPath>
                 </defs>
                 </svg>
-                {`${salaInfo.localizacao}`}
+                {localizacao_sala}
                 </div>
                 <div className='flex gap-2'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +88,7 @@ const InfoSala: React.FC = () => {
                 </clipPath>
                 </defs>
                 </svg>
-                {`${salaInfo.lotacao} pessoas`}
+                {`${capacidade} pessoas`}
                 </div>
                 <div className='flex gap-2'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +101,7 @@ const InfoSala: React.FC = () => {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.7577 2.02985C8.2935 1.8959 8.83643 2.22166 8.97038 2.75746L9.97038 6.75746C10.1043 7.29325 9.77857 7.83619 9.24277 7.97013C8.70698 8.10408 8.16404 7.77832 8.03009 7.24253L7.03009 3.24253C6.89615 2.70673 7.22191 2.1638 7.7577 2.02985Z" fill="#007BC0"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2428 2.02985C16.7786 2.1638 17.1043 2.70673 16.9704 3.24253L15.9704 7.24253C15.8364 7.77832 15.2935 8.10408 14.7577 7.97013C14.2219 7.83619 13.8961 7.29325 14.0301 6.75746L15.0301 2.75746C15.164 2.22166 15.707 1.8959 16.2428 2.02985Z" fill="#007BC0"/>
                 </svg>
-                {`${salaInfo.postos} postos`}
+                {`${projetor} postos`}
                 </div>
             </div>
             <div className='flex flex-col gap-2 my-4'>
@@ -112,7 +119,7 @@ const InfoSala: React.FC = () => {
                 </clipPath>
                 </defs>
                 </svg>
-                {`${salaInfo.computadores} computadores`}
+                {`${computador} computadores`}
                 </div>
                 <div className='flex gap-2'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +133,7 @@ const InfoSala: React.FC = () => {
                 </clipPath>
                 </defs>
                 </svg>
-                {`${salaInfo.quadroBranco} quadro branco`}
+                {`${quadro_branco} quadro branco`}
                 </div>
                 <div className='flex gap-2'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +147,7 @@ const InfoSala: React.FC = () => {
                 </clipPath>
                 </defs>
                 </svg>
-                {`${salaInfo.televisao} televisão`}
+                {`${televisao} televisão`}
                 </div>
             </div>
           </div>

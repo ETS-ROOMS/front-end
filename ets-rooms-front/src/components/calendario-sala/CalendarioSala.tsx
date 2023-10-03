@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar"; // Importe os outros componentes necessários
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import EventFormModal from "../event-form-modal/EventFormModal";
-import { FcInfo } from "react-icons/fc";
+import InfoSala from '../../components/buttom-infosala/BotaoInfoSala';
 import { PiNotePencilBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,7 @@ export default function CalendarioSala({ sala }) {
   const [startTime, setStartTime] = useState("07:30");
   const [endTime, setEndTime] = useState("17:00");
   const [eventos, setEventos] = useState([]);
+  console.log(sala)
 
   useEffect(() => {
     fetchEventos();
@@ -81,7 +82,7 @@ export default function CalendarioSala({ sala }) {
           <Link to={"/edit"}>
             <PiNotePencilBold />
           </Link>
-          <FcInfo />
+          <InfoSala {...sala} />
         </div>
       </div>
       <Calendar
