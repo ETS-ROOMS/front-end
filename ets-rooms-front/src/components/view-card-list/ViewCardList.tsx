@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ErrorBoundary from "react-error-boundary";
 import CardRooms from "../card-rooms/CardRooms";
 import { API_URL } from "../../config";
 
@@ -51,7 +50,6 @@ const ViewCardList = ({ namePremise }) => {
             descricao={room.descricao}
             hora_inicio={room.hora_inicio}
             hora_fim={room.hora_fim}
-            
           />
         ))}
       </section>
