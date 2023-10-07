@@ -6,6 +6,7 @@ import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import InputDisable from "../inputs/InputDisable";
 import TrashIcon from "../../components-icons/TrashIcon";
 import DeleteAlert from "./alerts/DeleteAlert";
+import InputTimer from "../inputs/InputTimer";
 
 const style = {
   position: "absolute",
@@ -34,6 +35,32 @@ export default function ModalEditAgendamento() {
     alert("Deseja excluir este item?");
   };
 
+  const [startTime, setStartTime] = useState("7:30");
+  const [endTime, setEndTime] = useState("17:00");
+
+  const arredondarTempo = (time) => {
+    const timeParts = time.split(":");
+    const minutes = parseInt(timeParts[1]);
+    const roundedMinutes = Math.ceil(minutes / 30) * 30;
+    return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
+  };
+
+  function generateTimeOptions() {
+    const options: string[] = [];
+    const startTime = 7 * 60 + 30;
+    const endTime = 17 * 60;
+    const interval = 30;
+    for (let minutes = startTime; minutes <= endTime; minutes += interval) {
+      const hour = Math.floor(minutes / 60);
+      const minute = minutes % 60;
+      const formattedTime = `${hour.toString().padStart(2, "0")}:${minute
+        .toString()
+        .padStart(2, "0")}`;
+      options.push(formattedTime);
+    }
+    return options;
+  }
+
   const handleInputChange = (value) => {
     setInputValue(value);
   };
@@ -43,15 +70,15 @@ export default function ModalEditAgendamento() {
       <Button onClick={handleOpen}>Open Modal</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <div className="w-[94%] h-[94%] hover:bg-yellow-400 transition-all ease-in-out">
-            <div className="w-full h-12 bg border-b border-gray-400 hover:bg-blue-400 transition-all ease-in-out flex justify-between">
+          <div className="w-[94%] h-[94%] ">
+            <div className="w-full h-12 bg border-b border-gray-400  flex justify-between">
               <h1 className="text-2xl font-normal">Editar agendamento</h1>
               <button onClick={DeleteAlert}>
                 <TrashIcon size={30} color="#000" />
               </button>
             </div>
-            <div className="w-full h-5/6 flex items-center hover:bg-red-400 transition-all ease-in-out">
-              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
+            <div className="w-full h-5/6 flex items-center">
+              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4">
                 <InputDisable value="Leonardo" disabled />
 
                 <Input
@@ -59,7 +86,7 @@ export default function ModalEditAgendamento() {
                   onInputChange={handleInputChange}
                   placeholder="*Select materia"
                 />
-                
+
                 <Input
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
@@ -74,6 +101,23 @@ export default function ModalEditAgendamento() {
                   placeholder="*Descrição"
                 />
               </div>
+
+              <InputTimer
+                sizeW="w-24"
+                sizeH="h-10"
+                value={startTime}
+                options={generateTimeOptions()}
+                onChange={(e) => setStartTime(arredondarTempo(e.target.value))}
+              />
+
+              <InputTimer
+              sizeW="w-24"
+              sizeH="h-10"
+              value={endTime}
+              options={generateTimeOptions()}
+              onChange={(e) => setEndTime(arredondarTempo(e.target.value))}
+              />
+
             </div>
             <div className="w-full h-full flex justify-end pt-3">
               <ButtonCancel text-blue-600 nameButton="Cancelar" />
