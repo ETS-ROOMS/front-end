@@ -1,40 +1,34 @@
 import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleInstructor from "../circle-instructor/CircleInstructor";
 
 export default function AccordInstructors() {
   return (
-    <Accordion style={{ boxShadow: "none", marginTop: "10px" }}>
+    <Accordion style={{ boxShadow: "none", marginTop: "1rem", marginBottom: "1rem" }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className="flex gap-5">
-          <CircleInstructor colorInstructor="bg-pink-400" nameInstructor="Agatha" />
-          <CircleInstructor colorInstructor="bg-gray-400" nameInstructor="Camila" />
-          <CircleInstructor colorInstructor="bg-black" nameInstructor="Cléber" />
-          <CircleInstructor colorInstructor="bg-orange-400" nameInstructor="Croda" />
-          <CircleInstructor colorInstructor="bg-yellow-400" nameInstructor="Dani" />
-          <CircleInstructor colorInstructor="bg-blue-400" nameInstructor="Dona" />
-          <CircleInstructor colorInstructor="bg-green-400" nameInstructor="Francis" />
-          <CircleInstructor colorInstructor="bg-red-400" nameInstructor="Ianella" />
-          <CircleInstructor colorInstructor="bg-blue-100" nameInstructor="Isadora" />
-          <CircleInstructor colorInstructor="bg-purple-800" nameInstructor="Leonardo" />
-          <CircleInstructor colorInstructor="bg-blue-600" nameInstructor="Luca" />
+        <Typography className="flex gap-5 flex-wrap">
+          <CircleInstructor cor="#E552DA"  nome="Agatha" />
+          <CircleInstructor cor="#C1C7CC  " nome="Camila" />
+          <CircleInstructor cor="#000000" nome="Cléber" />
+          <CircleInstructor cor="#FF9254" nome="Croda" />
+          <CircleInstructor cor="#FFCF00" nome="Dani" />
+          <CircleInstructor cor="#0096E8" nome="Dona" />
+          <CircleInstructor cor="#00884A" nome="Francis" />
+          <CircleInstructor cor="#ED0007" nome="Ianella" />
+          <CircleInstructor cor="#791D73" nome="Leonardo" />
+          <CircleInstructor cor="#00629A" nome="Luca" />
+          <CircleInstructor cor="#FFD9D9" nome="Roberta" />
+          <CircleInstructor cor="#71767C" nome="Vanessa" />
+          <CircleInstructor cor="#66B8B2" nome="Wilson" />
         </Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        <Typography className="flex gap-5">
-          <CircleInstructor colorInstructor="bg-orange-100" nameInstructor="Roberta" />
-          <CircleInstructor colorInstructor="bg-neutral-500" nameInstructor="Vanessa" />
-          <CircleInstructor colorInstructor="bg-emerald-400" nameInstructor="Wilson" />
-        </Typography>
-      </AccordionDetails>
     </Accordion>
   );
 }
