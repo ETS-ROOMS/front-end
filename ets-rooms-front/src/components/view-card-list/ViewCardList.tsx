@@ -1,55 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import CardRooms from "../card-rooms/CardRooms";
-import { API_URL } from "../../config";
+import { RoomData } from "../../pages/resume-page/ResumePage";
 
-interface RoomData {
-  nome_responsavel: string;
-  nome_evento: string;
-  descricao: string;
-  hora_inicio: string | null;
-  hora_fim: string | null;
-}
-
-const ViewCardList = ({ namePremise }) => {
-  const [roomsData, setRoomsData] = useState<RoomData[]>([]);
-
-  useEffect(() => {
-    // Fazer a solicitação GET à API Django aqui
-    axios
-      .get(`${API_URL}/evento/`)
-      .then((response) => {
-        setRoomsData(
-          response.data.results.map((room) => {
-            return {
-              nome_responsavel: room.nome_responsavel,
-              nome_evento: room.nome_evento,
-              descricao: room.descricao,
-              hora_inicio: room.hora_inicio,
-              hora_fim: room.hora_fim,
-            };
-          })
-        );
-      })
-      .catch((error) => {
-        console.error("Erro ao obter os dados da API:", error);
-      });
-  }, []);
-
+const ViewCardList = ({ name, rooms }: { name: string, rooms: RoomData[] }) => {
   return (
     <article>
       <h1 className="w-80 h-16 text-center bg-slate-100 rounded-t-xl sticky text-2xl pt-4">
-        {namePremise}
+        {name}
       </h1>
       <section className="w-80 h-96 rounded-b-xl bg-slate-100 flex items-center flex-col gap-5 overflow-y-scroll">
-        {roomsData.map((room, index) => (
+        {rooms.map((room, index) => (
           <CardRooms
             key={index}
-            nome_responsavel={room.nome_responsavel}
-            nome_evento={room.nome_evento}
-            descricao={room.descricao}
-            hora_inicio={room.hora_inicio}
-            hora_fim={room.hora_fim}
+            {...room}
           />
         ))}
       </section>

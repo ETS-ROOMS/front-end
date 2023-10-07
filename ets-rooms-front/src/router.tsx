@@ -13,7 +13,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" Component={Agendar} />
-        <Route path="/resumo" Component={ResumePage} />
+        <Route path="/resumo/:dia" Component={ResumePage} />
         <Route path="/editar" Component={EditEvent} />
         <Route path="/mapa" Component={Mapa} />
         <Route path="/modal" Component={ModalCadInstructors} />

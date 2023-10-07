@@ -1,12 +1,5 @@
 import React from "react";
-
-interface CardRoomsProps {
-  nome_responsavel: string;
-  nome_evento: string;
-  descricao: string;
-  hora_inicio: string | null;
-  hora_fim: string | null;
-}
+import { RoomData } from "../../pages/resume-page/ResumePage";
 
 function formatarHora(hora: string | null): string {
   if (!hora) return "";
@@ -17,7 +10,7 @@ function formatarHora(hora: string | null): string {
   return horaFormatada;
 }
 
-export default function CardRooms(props: CardRoomsProps) {
+export default function CardRooms(props: RoomData) {
   const hora_inicio = formatarHora(props.hora_inicio);
   const hora_fim = formatarHora(props.hora_fim);
 
@@ -26,7 +19,7 @@ export default function CardRooms(props: CardRoomsProps) {
       <div className="w-2 h-full rounded-s bg-purple-800"></div>
       <div className="w-full h-full p-2 flex flex-col space-y-1">
         <div className="flex items-center justify-between">
-          <h1 className="text-base font-medium">{props.nome_evento}</h1>
+          <h1 className="text-base font-medium">{props.nome_sala}</h1>
           <div className="flex">
             <p>{hora_inicio}</p>
             <p>-</p>
@@ -39,7 +32,7 @@ export default function CardRooms(props: CardRoomsProps) {
           </p>
         </div>
         <div>
-          <p className="text-sm font-light text-gray-700">{props.descricao}</p>
+          <p className="text-sm font-light text-gray-700">{props.nome_evento}</p>
         </div>
       </div>
     </section>
