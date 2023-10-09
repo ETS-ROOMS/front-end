@@ -7,6 +7,8 @@ import InputDisable from "../inputs/InputDisable";
 import TrashIcon from "../../components-icons/TrashIcon";
 import DeleteAlert from "./alerts/DeleteAlert";
 import InputTimer from "../inputs/InputTimer";
+import ModalExcluir from "./modalExcluir";
+import MiniModal from "./modalExcluir";
 
 const style = {
   position: "absolute",
@@ -45,6 +47,18 @@ export default function ModalEditAgendamento() {
     return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
   };
 
+  function MiniModal() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
+    const openModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
+
+  }
   function generateTimeOptions() {
     const options: string[] = [];
     const startTime = 7 * 60 + 30;
@@ -73,7 +87,7 @@ export default function ModalEditAgendamento() {
           <div className="w-[94%] h-[94%] ">
             <div className="w-full h-12 bg border-b border-gray-400  flex justify-between">
               <h1 className="text-2xl font-normal">Editar agendamento</h1>
-              <button onClick={DeleteAlert}>
+              <button onClick={MiniModal}>
                 <TrashIcon size={30} color="#000" />
               </button>
             </div>
@@ -120,7 +134,7 @@ export default function ModalEditAgendamento() {
 
             </div>
             <div className="w-full h-full flex justify-end pt-3">
-              <ButtonCancel text-blue-600 nameButton="Cancelar" />
+              <ButtonCancel text-blue-600 nameButton="Cancelar"  />
               <ButtonConfirm nameButton="Editar" />
             </div>
           </div>
