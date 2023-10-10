@@ -105,7 +105,6 @@ export default function ModalCadRoom() {
                     </ul>
                   </div>
                 </div>
-              
               </div>
               {/* <Input className='w-1/5' placeholder="*Cadastre novas imagens da sala +" />
               <Carousel className='w-2/5 bg-pink-300'>
