@@ -34,6 +34,20 @@ export default function ModalCadRoom() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const top100Eventos = [
+    { label: "Python" },
+    { label: "Java" },
+    { label: "HTML" },
+    { label: "React" },
+    { label: "Vue" },
+    { label: "SQL" },
+    { label: "Banco de dados" },
+    { label: "Respbarry Pi" },
+    { label: "Arduino" },
+    { label: "IA" },
+    { label: "C#" },
+  ];
+
   return (
     <>
       <Button onClick={handleOpen}>Open Modal</Button>
@@ -48,8 +62,17 @@ export default function ModalCadRoom() {
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 hover:bg-green-400 transition-all ease-in-out">
                 <Input placeholder="*Nome da sala" />
 
+                <InputSelect
+                  placeholder="Escolha o prédio"
+                  options={top100Eventos.map((film) => ({
+                    label: film.label,
+                    value: film.label,
+                  }))}
+                  onChange={(e) => console.log(e.target.value)}
+                />
+
                 <Input placeholder="*Localização da sala" />
-                <div className="w-full h-3/6 hover:bg-purple-400 transition-all ease-in-out  flex items-center">
+                <div className="w-full h-3/6 hover:bg-purple-400 transition-all ease-in-out ">
                   <h1 className="text-gray-400 text-sm">
                     Preencha a seguir com as quantidades na sala:
                   </h1>
