@@ -35,17 +35,11 @@ export default function ModalCadRoom() {
   const handleClose = () => setOpen(false);
 
   const top100Eventos = [
-    { label: "Python" },
-    { label: "Java" },
-    { label: "HTML" },
-    { label: "React" },
-    { label: "Vue" },
-    { label: "SQL" },
-    { label: "Banco de dados" },
-    { label: "Respbarry Pi" },
-    { label: "Arduino" },
-    { label: "IA" },
-    { label: "C#" },
+    { label: "" },
+    { label: "Ca170" },
+    { label: "Ca140" },
+    { label: "Ca600" },
+    
   ];
 
   return (
@@ -63,7 +57,7 @@ export default function ModalCadRoom() {
                 <Input placeholder="*Nome da sala" />
 
                 <InputSelect
-                  placeholder="Escolha o prédio"
+                  placeholder="*Nome da sala"
                   options={top100Eventos.map((film) => ({
                     label: film.label,
                     value: film.label,
@@ -137,7 +131,7 @@ export default function ModalCadRoom() {
               </Carousel> */}
               <div className=" w-64 h-2/5 hover:bg-purple-200 transition-all ease-in-out  space-y-4 ">
               <Input className='w-64' placeholder="*Cadastre imagens da sala +" />
-              <Carousel className='w-64 '>
+              <Carousel className='w-80 '>
                 {salaImages.map((image, index) => (
                   <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
                 ))}
