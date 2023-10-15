@@ -1,32 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "../../config";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleInstructor from "../circle-instructor/CircleInstructor";
 
+interface Instructor {
+  nome: string;
+  edv: string;
+  email: string;
+  cor: string;
+  materias: string;
+}
+
 export default function AccordInstructors() {
+  const [existingInstructors, setExistingInstructors] = useState<Instructor[]>([]);
+  const [existingColors, setExistingColors] = useState<string[]>([]);
+
+    useEffect(() => {
+    // Fazer a solicitação GET à API Django aqui
+    axios
+      .get(`${API_URL}/cad_instrutor/`)
+      .then((response) => {
+        const instructors = response.data.results.map((instructor) => {
+          return {
+            cor: instructor.cor,
+            nome: instructor.nome,
+          };
+        });
+
+        const colors = instructors.map((instructor) => instructor.cor);
+
+        setExistingInstructors(instructors);
+        setExistingColors(colors);
+      })
+      .catch((error) => {
+        console.error("Erro ao obter os dados da API:", error);
+      });
+  }, []);
   return (
-    <Accordion style={{ boxShadow: "none", marginTop: "1rem", marginBottom: "1rem" }}>
+    <Accordion
+      style={{ boxShadow: "none", marginTop: "1rem", marginBottom: "1rem" }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
         <Typography className="flex gap-5 flex-wrap">
-          <CircleInstructor cor="#E552DA"  nome="Agatha" />
-          <CircleInstructor cor="#C1C7CC  " nome="Camila" />
-          <CircleInstructor cor="#000000" nome="Cléber" />
-          <CircleInstructor cor="#FF9254" nome="Croda" />
-          <CircleInstructor cor="#FFCF00" nome="Dani" />
-          <CircleInstructor cor="#0096E8" nome="Dona" />
-          <CircleInstructor cor="#00884A" nome="Francis" />
-          <CircleInstructor cor="#ED0007" nome="Ianella" />
-          <CircleInstructor cor="#791D73" nome="Leonardo" />
-          <CircleInstructor cor="#00629A" nome="Luca" />
-          <CircleInstructor cor="#FFD9D9" nome="Roberta" />
-          <CircleInstructor cor="#71767C" nome="Vanessa" />
-          <CircleInstructor cor="#66B8B2" nome="Wilson" />
+          {existingInstructors.map((instructor, index) => (
+            <CircleInstructor
+              key={index}
+              cor={instructor.cor}
+              nome={instructor.nome}
+            />
+          ))}
         </Typography>
       </AccordionSummary>
     </Accordion>

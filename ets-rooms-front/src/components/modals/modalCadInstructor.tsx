@@ -41,7 +41,10 @@ export default function ModalCadInstructors() {
   const handleClose = () => setOpen(false);
   const [selectedColor, setSelectedColor] = useState("#000");
   const [inputValue, setInputValue] = useState("");
-  const [existingInstructors, setExistingInstructors] = useState<Instructor[]>([]);
+  const [existingInstructors, setExistingInstructors] = useState<Instructor[]>(
+    []
+  );
+  const [existingColors, setExistingColors] = useState<string[]>([]); // New state for existing colors
 
   const [formData, setFormData] = useState<Instructor>({
     nome: "",
@@ -63,12 +66,22 @@ export default function ModalCadInstructors() {
   };
 
   const handleFormSubmit = async () => {
+    if (
+      formData.cor.trim() === "" ||
+      formData.edv.trim() === "" ||
+      formData.email.trim() === "" ||
+      formData.materias.trim() === "" 
+    ) {
+      alert("Preencha todos os campos obrigatórios.");
+    }
+  
     try {
       const response = await axios.post(`${API_URL}/cad_instrutor/`, formData);
       console.log("Cadastro bem-sucedido", response.data);
-      handleClose();
+      alert("Deu bom");
     } catch (error) {
       console.error("Erro ao cadastrar instrutor", error);
+      alert("Deu ruim");
     }
   };
 
@@ -77,14 +90,17 @@ export default function ModalCadInstructors() {
     axios
       .get(`${API_URL}/cad_instrutor/`)
       .then((response) => {
-        setExistingInstructors(
-          response.data.results.map((instructor) => {
-            return {
-              cor: instructor.cor,
-              nome: instructor.nome,
-            };
-          })
-        );
+        const instructors = response.data.results.map((instructor) => {
+          return {
+            cor: instructor.cor,
+            nome: instructor.nome,
+          };
+        });
+
+        const colors = instructors.map((instructor) => instructor.cor);
+
+        setExistingInstructors(instructors);
+        setExistingColors(colors);
       })
       .catch((error) => {
         console.error("Erro ao obter os dados da API:", error);
@@ -100,8 +116,8 @@ export default function ModalCadInstructors() {
             <div className="w-full h-12 border-b border-gray-400">
               <h1 className="text-2xl font-normal">Cadastrar instrutor</h1>
             </div>
-            <div className="w-full h-5/6 flex items-center ">
-              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 ">
+            <form className="w-full h-5/6 flex items-center">
+              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4">
                 <InputNameInstructor
                   inputValue={formData.nome}
                   onInputChange={(value) => handleInputChange("nome", value)}
@@ -129,10 +145,10 @@ export default function ModalCadInstructors() {
                 <div className="w-full grid grid-cols-2">
                   <div>
                     <p className="text-gray-400 text-sm pb-1">Sua Cor:</p>
-                    <CircleInstructor
-                      cor={selectedColor}
-                      nome={inputValue}
-                    />
+                    <div className="flex">
+                      <CircleInstructor cor={selectedColor} nome={inputValue} />
+                      <p>{formData.nome}</p>
+                    </div>
                   </div>
                   <div className="">
                     <p className="text-gray-400 text-sm">Mudar Cor:</p>
@@ -144,7 +160,7 @@ export default function ModalCadInstructors() {
                   <div className="grid col-span-2 pt-3">
                     <div className="w-full h-full flex flex-col justify-center">
                       <p className="text-gray-400 text-sm">Cores existentes</p>
-                      <div className="flex pt-1 gap-3">
+                      <div className="h-40 flex flex-wrap pt-1 gap-2">
                         {existingInstructors.map((instructor, index) => (
                           <CircleInstructor
                             key={index}
@@ -167,7 +183,7 @@ export default function ModalCadInstructors() {
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </Box>
       </Modal>
