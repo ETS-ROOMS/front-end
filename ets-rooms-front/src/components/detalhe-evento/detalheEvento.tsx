@@ -2,8 +2,35 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
+import { RoomData } from "../../pages/resume-page/ResumePage";
 
-function DetalheEvento() {
+const meses = {
+  '1': "Janeiro",
+  '2': "Fevereiro",
+  '3': "Março",
+  '4': "Abril",
+  '5': "Maio",
+  '6': "Junho",
+  '7': "Julho",
+  '8': "Agosto",
+  '9': "Setembro",
+  '10': "Outubro",
+  '11': "Novembro",
+  '12': "Dezembro"
+};
+
+function DetalheEvento({
+  nome_responsavel,
+  data_inicio,
+  data_fim,
+  children,
+  descricao,
+  hora_fim: finalHorario,
+  hora_inicio: inicioHorario,
+  nome_evento: nomeEvento,
+  nome_sala: nomeSala,
+  className
+}: RoomData & { children: any, className: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -19,38 +46,29 @@ function DetalheEvento() {
     closeModal();
   };
 
-  const nomeResponsavel = "Cléber";
-
   const inicioDiaSemena = "Segunda-feira";
   const finalDiaSemena = "Segunda-feira";
 
-  const inicioDiaNumerico = "07";
-  const finalDiaNumerico = "08";
+  const inicioDiaNumerico = data_inicio.split('-').slice(-1)[0];
+  const finalDiaNumerico = data_fim.split('-').slice(-1)[0];
 
-  const inicioMes = "Julho";
-  const finalMes = "Dezembro";
-
-  const inicioHorario = "09:30";
-  const finalHorario = "10:30";
+  const inicioMes = meses[data_inicio.split('-')[1]];
+  const finalMes = meses[data_fim.split('-')[1]];
 
   const recorrencia = `Ocorre toda ${inicioDiaSemena} das ${inicioHorario} às ${finalHorario}, de ${inicioDiaNumerico} de ${inicioMes} até ${finalDiaNumerico} de ${finalMes}!`;
 
-  const nomeSala = "Lab 01";
   const prédio = "Ca600";
 
   const email = "Cleber.Augusto@br.bosch.com";
 
-  const nomeEvento = "Aula de Python";
-  const descrição = "Aula com a turma 8";
-
   return (
-    <div>
-      <button
-        className="bg-[#007BC0] w- h-10 rounded-full flex justify-center items-center hover:bg-[#00629A] absolute top-0 right-0 my-24 mr-32"
+    <>
+      <div
+        className={className}
         onClick={openModal}
       >
-        Card exemplo
-      </button>
+        {children}
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -60,7 +78,7 @@ function DetalheEvento() {
             </h2>
 
             <div className="my-4">
-              <h1 className="font-bold mb-4">Responsável: {nomeResponsavel}</h1>
+              <h1 className="font-bold mb-4">Responsável: {nome_responsavel}</h1>
 
               <div className="gap-8">
                 {/* DATA E HORÁRIO */}
@@ -124,7 +142,7 @@ function DetalheEvento() {
                   </svg>
 
                   <div>
-                    <div className="flex gap-2 text-sm justify-between">
+                    <div className="flex gap-2 text-sm">
                       <p className="text-[#71767C] font-bold">De</p>
                       <p>
                         {inicioDiaSemena}, {inicioDiaNumerico} de {inicioMes}
@@ -138,8 +156,8 @@ function DetalheEvento() {
                     </div>
                   </div>
                   <div className="text-[#71767C]">
-                    <p>{inicioHorario}</p>
-                    <p>{finalHorario}</p>
+                    <p>{inicioHorario?.substring(0, inicioHorario.length - 3)}</p>
+                    <p>{finalHorario?.substring(0, finalHorario.length - 3)}</p>
                   </div>
                 </div>
                 <p className="text-xs text-[#A4ABB3] ml-14 mb-4">
@@ -268,7 +286,7 @@ function DetalheEvento() {
                   </svg>
 
                   <p>
-                    {nomeEvento} - {descrição}
+                    {nomeEvento} - {descricao}
                   </p>
                 </div>
               </div>
@@ -293,7 +311,7 @@ function DetalheEvento() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

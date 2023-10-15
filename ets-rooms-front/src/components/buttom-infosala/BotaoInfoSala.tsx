@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
+import { API_URL } from '../../config';
 
 type InfoSalaProps = {
+  id_sala: string;
   nome_sala: string;
   localizacao_sala: string;
   capacidade: number;
@@ -9,6 +11,7 @@ type InfoSalaProps = {
   quadro_branco: number;
   televisao: number;
   projetor: number;
+  images: string[];
 };
 
 const InfoSala: React.FC<InfoSalaProps> = ({
@@ -18,15 +21,14 @@ const InfoSala: React.FC<InfoSalaProps> = ({
   televisao,
   computador,
   projetor,
-  quadro_branco
+  quadro_branco,
+  images
 }) => {
   const [open, setOpen] = useState(false);
 
   const toggleModal = () => {
     setOpen(p => !p);
   };
-
-  const salaImages = ['/sala_verde1.png', '/sala_verde2.png'];
 
   return (
     <div className="relative">
@@ -153,8 +155,8 @@ const InfoSala: React.FC<InfoSalaProps> = ({
           </div>
           
           <Carousel>
-            {salaImages.map((image, index) => (
-              <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+            {images.map((image, index) => (
+              <img className='rounded-md' key={index} src={`${API_URL}${image}`} alt={`Imagem ${index + 1}`} />
             ))}
           </Carousel>
         </div>
