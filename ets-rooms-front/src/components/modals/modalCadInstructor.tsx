@@ -76,7 +76,7 @@ export default function ModalCadInstructors() {
     }
   
     try {
-      const response = await axios.post(`${API_URL}/cad_instrutor/`, formData);
+      const response = await axios.post(`${API_URL}/instrutor/`, formData);
       console.log("Cadastro bem-sucedido", response.data);
       alert("Deu bom");
     } catch (error) {
@@ -88,7 +88,7 @@ export default function ModalCadInstructors() {
   useEffect(() => {
     // Fazer a solicitação GET à API Django aqui
     axios
-      .get(`${API_URL}/cad_instrutor/`)
+      .get(`${API_URL}/instrutor/`)
       .then((response) => {
         const instructors = response.data.results.map((instructor) => {
           return {

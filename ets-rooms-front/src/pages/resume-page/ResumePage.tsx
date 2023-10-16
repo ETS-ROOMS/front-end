@@ -50,7 +50,7 @@ export default function ResumePage() {
 
   return (
     <main className="w-4/5 ml-auto mr-auto mt-8">
-      <Period />
+      {dia ? <Period dia={dia} /> : null}
       <AccordInstructors/>
       <article className="grid grid-flow-col gap-8">
         {Object.entries(rooms).map(([name, _rooms]) => (

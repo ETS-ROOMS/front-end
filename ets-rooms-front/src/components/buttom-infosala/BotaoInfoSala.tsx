@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { API_URL } from '../../config';
+import { useClickOutside } from '../../utils/hooks';
 
 type InfoSalaProps = {
   id_sala: string;
@@ -25,6 +26,10 @@ const InfoSala: React.FC<InfoSalaProps> = ({
   images
 }) => {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => {
+    setOpen(false);
+  });
 
   const toggleModal = () => {
     setOpen(p => !p);
@@ -54,7 +59,7 @@ const InfoSala: React.FC<InfoSalaProps> = ({
         </svg>
       </button>
       {open ? (
-        <div className="absolute top-[90%] bg-white flex z-50 drop-shadow-xl rounded border">
+        <div ref={ref} className="absolute top-[90%] bg-white flex z-50 drop-shadow-xl rounded border">
         <div className="modal bg-white p-4 rounded-lg w-[300px]">
             <h2 className="text-xl font-semibold pb-2 border-b border-gray-300">
               {nome_sala}

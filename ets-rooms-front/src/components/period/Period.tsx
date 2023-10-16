@@ -1,41 +1,24 @@
 import React from "react";
 import DateTimeDisplay from "../date-time-display/DateTimeDisplay";
+import InputDate from "../inputs/InputDate";
 
-export default function Period() {
+export default function Period({ dia }: { dia: string }) {
   return (
     <section className="w-full ">
       <article className="w-ful flex justify-between">
         <DateTimeDisplay />
-        <div className="flex justify-between items-center ">
-          <h2 className="text-lg pr-4">Período</h2>
-          <nav className="w-52 h-10 ">
-            <ul className="bg-slate-100 h-full flex justify-center items-center text-sm rounded shadow-md gap-1">
-              <li className="h-5/6 flex justify-center items-center rounded active:bg-white active:shadow-md transition ease-in-out">
-                <a
-                  className="px-1 mx-2 hover:text-blue-500 active:text-blue-500"
-                  href="#"
-                >
-                  Manhã
-                </a>
-              </li>
-              <li className="h-5/6 flex justify-center items-center rounded active:bg-white active:shadow-md transition ease-in-out">
-                <a
-                  className="px-1 mx-2 hover:text-blue-500 active:text-blue-500"
-                  href="#"
-                >
-                  Tarde
-                </a>
-              </li>
-              <li className="h-5/6 flex justify-center items-center rounded active:bg-white active:shadow-md transition ease-in-out">
-                <a
-                  className="px-1 mx-2 hover:text-blue-500 active:text-blue-500"
-                  href="#"
-                >
-                  Ambos
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div className="flex justify-between items-center gap-2">
+          <h2 className="p-2">Ver o resumo de outro dia</h2>
+          <InputDate
+            sizeW="w-32"
+            sizeH="h-10"
+            defaultValue={dia}
+            onChange={(e) => {
+              const date = new Date(e.target.value);
+              const day = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+              window.location.href = `/resumo/${day}`;
+            }}
+          />
         </div>
       </article>
     </section>

@@ -12,7 +12,7 @@ export default function DateTimeDisplay() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Resumo de hoje, {formatDate}</h1>
+      <h1 className="text-2xl font-bold">Resumo do dia {formatDate}</h1>
     </div>
   );
 }

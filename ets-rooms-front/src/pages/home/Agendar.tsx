@@ -14,7 +14,7 @@ function Agendar() {
     // Buscar os IDs das salas da API Django
     const fetchIdsSalas = async () => {
       try {
-        const response = await axios.get(`${API_URL}/cad_sala/`); // Substitua pela sua URL de busca de "id_sala"
+        const response = await axios.get(`${API_URL}/sala/`); // Substitua pela sua URL de busca de "id_sala"
         const _salas = {};
         for (const sala of response.data) {
           const predio = sala.predio_sala;
