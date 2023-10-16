@@ -29,8 +29,7 @@ const style = {
 
 const salaImages = ['/sala_verde1.png', '/sala_verde2.png'];
 
-export default function ModalCadRoom() {
-  const [open, setOpen] = useState(false);
+export default function ModalCadRoom({ open, setOpen }: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -140,7 +139,7 @@ export default function ModalCadRoom() {
             </div>
             <div className="w-full h-full  flex justify-end pt-3">
                       <ButtonCancel nameButton="Cancelar" />
-                      <ButtonConfirm nameButton="Cadastrar" />
+                      <ButtonConfirm onClick={() => {}} nameButton="Cadastrar" />
                     </div>
           </div>
         </Box>

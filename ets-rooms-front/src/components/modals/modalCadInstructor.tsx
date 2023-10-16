@@ -35,8 +35,7 @@ interface Instructor {
   materias: string;
 }
 
-export default function ModalCadInstructors() {
-  const [open, setOpen] = useState(false);
+export default function ModalCadInstructors({ open, setOpen }: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedColor, setSelectedColor] = useState("#000");
@@ -109,7 +108,6 @@ export default function ModalCadInstructors() {
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <div className="w-[94%] h-[94%]">
