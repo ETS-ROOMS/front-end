@@ -46,11 +46,12 @@ export default function DeleteAlert({open, onClose}) {
               <InputPassword />
             </div>
             <div className="w-full h-full flex justify-between pt-6">
-              <ButtonCancel nameButton="Cancelar" />
+            <ButtonCancel nameButton="Cancelar" />
               <ButtonConfirm
                 nameButton="Excluir"
                 colorButton="bg-red-600 hover:bg-red-700"
-              />
+                
+                />
             </div>
           </div>
         </Box>
