@@ -140,7 +140,7 @@ export default function ModalCadRoom() {
             </div>
             <div className="w-full h-full  flex justify-end pt-3">
                       <ButtonCancel nameButton="Cancelar" />
-                      <ButtonConfirm nameButton="Cadastrar" />
+                      <ButtonConfirm nameButton="Cadastrar" colorButton="bg-blue-500"/>
                     </div>
           </div>
         </Box>

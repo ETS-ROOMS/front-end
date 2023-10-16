@@ -147,7 +147,7 @@ export default function ModalCadInstructors() {
                     </div>
                     <div className="w-full h-full flex justify-between pt-3">
                       <ButtonCancel nameButton="Cancelar" />
-                      <ButtonConfirm nameButton="Cadastrar" />
+                      <ButtonConfirm nameButton="Cadastrar" colorButton="bg-blue-500"/>
                     </div>
                   </div>
                 </div>

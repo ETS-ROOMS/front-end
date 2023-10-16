@@ -8,6 +8,7 @@ import ModalCadInstructors from "./components/modals/modalCadInstructor";
 import ModalCadRoom from "./components/modals/modalCadRoom";
 import ModalEditAgendamento from "./components/modals/modalEditAgendamento";
 import ModalExcluir from "./components/modals/modalExcluir";
+import DeleteAlert from "./components/modals/alerts/DeleteAlert";
 
 export default function Router() {
   return (
@@ -20,7 +21,6 @@ export default function Router() {
         <Route path="/modal" Component={ModalCadInstructors} />
         <Route path="/modal2" Component={ModalCadRoom} />
         <Route path="/modal3" Component={ModalEditAgendamento} />
-        <Route path="/modal4" Component={ModalExcluir} />
       </Routes>
     </BrowserRouter>
   );
