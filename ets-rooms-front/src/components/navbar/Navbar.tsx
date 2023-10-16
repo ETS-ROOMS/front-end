@@ -28,11 +28,6 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/mapa">
-                  Ver mapa geral
-                </a>
-              </li>
-              <li className="p-4">
                 <a className="text-lg hover:border-b-2 border-b-black" href={`/resumo/${day}`}>
                   Resumo de hoje
                 </a>

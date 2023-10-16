@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonAdmin } from '../../components/floating-buttom-admin/button';
 
 interface Evento {
   id_Evento: number;
@@ -19,7 +20,8 @@ interface EventoTabelaProps {
 
 const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
   return (
-      <div>
+      <div className='w-4/5 ml-auto mr-auto mt-8'>
+        <h1 className='text-2xl font-bold'>Acompanhe os últimos agendamentos</h1>
       <table className="min-w-full ">
         <thead>
           <tr>
@@ -56,4 +58,8 @@ const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
   );
 };
 
-export default EventoTabela;
+function EventoTabelaPage() {
+  return <EventoTabela eventos={[]} />
+}
+
+export default EventoTabelaPage;

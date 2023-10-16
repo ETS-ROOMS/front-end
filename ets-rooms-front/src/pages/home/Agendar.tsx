@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ButtomDownload from "../../components/buttom-download/buttomDownload";
 import CalendarioSala from '../../components/calendario-sala/CalendarioSala';
-import CalendarioforSala from "./CalendarioforSala";
 import { API_URL } from '../../config';
 import { ButtonAdmin } from '../../components/floating-buttom-admin/button';
 
@@ -34,15 +33,14 @@ function Agendar() {
   }, []);
 
   return (
-    <main>
+    <main className=''>
+      <h1 className='w-4/5 ml-auto mr-auto mt-8 text-2xl font-bold'>Agende em qualquer sala</h1>
       <ButtomDownload />
-      <ButtonAdmin/>
       <div className='flex flex-col'>
         {Object.entries(salas).map(([predio, salas]) => (
           <LinhaCalendarios salas={salas} predio={predio}/>
         ))}
       </div>
-      <CalendarioforSala />
     </main>
   );
 }
@@ -50,7 +48,7 @@ function Agendar() {
 function LinhaCalendarios({ predio, salas }) {
   return (
     <div className='flex p-8'>
-      <h2 className='text-xl p-16'>{predio}</h2>
+      <h2 className='text-2xl font-bold p-1 flex items-center'>{predio}</h2>
       {salas.map(sala => (<CalendarioSala sala={sala} />))}
     </div>
   )
