@@ -34,7 +34,7 @@ function Agendar() {
 
   return (
     <main className=''>
-      <h1 className='w-4/5 ml-auto mr-auto mt-8 text-2xl font-bold'>Agende em qualquer sala</h1>
+      <h1 className='w-4/5 ml-auto mr-auto mt-8 text-2xl font-bold'>Escolha um dia e agende em qualquer sala</h1>
       <ButtomDownload />
       <div className='flex flex-col'>
         {Object.entries(salas).map(([predio, salas]) => (

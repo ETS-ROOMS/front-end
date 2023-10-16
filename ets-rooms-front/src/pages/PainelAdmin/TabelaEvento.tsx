@@ -20,8 +20,10 @@ interface EventoTabelaProps {
 
 const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
   return (
-      <div className='w-4/5 ml-auto mr-auto mt-8'>
-        <h1 className='text-2xl font-bold'>Acompanhe os últimos agendamentos</h1>
+    <>
+     <ButtonAdmin/>
+     <div className='w-4/5 ml-auto mr-auto mt-8'>
+        <h1 className='text-2xl font-bold mb-12'>Acompanhe os últimos agendamentos</h1>
       <table className="min-w-full ">
         <thead>
           <tr>
@@ -55,6 +57,8 @@ const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
         </tbody>
       </table>
     </div>
+    </>
+      
   );
 };
 

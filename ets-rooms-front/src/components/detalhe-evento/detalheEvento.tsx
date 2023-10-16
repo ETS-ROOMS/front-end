@@ -55,7 +55,7 @@ function DetalheEvento({
   const inicioMes = meses[data_inicio.split('-')[1]];
   const finalMes = meses[data_fim.split('-')[1]];
 
-  const recorrencia = `Ocorre toda ${inicioDiaSemena} das ${inicioHorario} às ${finalHorario}, de ${inicioDiaNumerico} de ${inicioMes} até ${finalDiaNumerico} de ${finalMes}!`;
+  const recorrencia = `Ocorre toda ${inicioDiaSemena} das ${inicioHorario?.substring(0, inicioHorario.length - 3)} às ${finalHorario?.substring(0, finalHorario.length - 3)}, de ${inicioDiaNumerico} de ${inicioMes} até ${finalDiaNumerico} de ${finalMes}!`;
 
   const prédio = "Ca600";
 
