@@ -6,18 +6,34 @@ import axios from "axios";
 import { API_URL } from "../../config";
 import { useParams } from "react-router-dom";
 
-export type RoomData = {
-  id_Evento: string;
-  nome_responsavel: string;
-  nome_evento: string;
-  edv_cliente: number;
-  descricao: string;
-  data_inicio: string;
-  data_fim: string;
-  hora_inicio: string | null;
-  hora_fim: string | null;
-  nome_sala: string;
-  historico: string;
+export interface RoomData {
+  id_Evento: string
+  descricao: string
+  data_inicio: string
+  data_fim: string
+  hora_inicio: string
+  hora_fim: string
+  local: string
+  nome_sala: string
+  historico: string
+  instrutor: string
+  materia: number
+  instrutor_data: InstrutorData
+  materia_data: MateriaData
+}
+
+export interface InstrutorData {
+  id_instrutor: string
+  nome: string
+  edv: string
+  email: string
+  cor: string
+}
+
+export interface MateriaData {
+  id: number
+  nome: string
+  instrutor: string
 }
 
 export default function ResumePage() {

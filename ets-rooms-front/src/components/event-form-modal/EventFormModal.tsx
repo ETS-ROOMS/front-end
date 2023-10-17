@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import Input from "../inputs/Input";
 import InputSelect from "../inputs/InputSelect";
@@ -8,6 +8,11 @@ import ButtonCancel from "../button-cancel/ButtonCancel";
 import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import InputCheckbox from "../inputs/InputCheckbox";
 import InputTimer from "../inputs/InputTimer";
+import { InstrutorWithMaterias } from '../../pages/home/Agendar';
+import { API_URL } from "../../config";
+import axios from "axios";
+import { MateriaData } from "../../pages/resume-page/ResumePage";
+import { formatDate } from "../../utils/date";
 
 const style = {
   position: "absolute",
@@ -33,10 +38,33 @@ const EventFormModal = ({
   endTime,
   setEndTime,
   selectedDate,
-}: any) => {
+  instrutores,
+  local,
+  nomeSala
+}: {
+  instrutores: InstrutorWithMaterias[],
+  selectedDate: any,
+  setEndTime: any,
+  endTime: any,
+  handleFormSubmit: any,
+  onClose: any,
+  showForm: any,
+  startTime: any,
+  setStartTime: any,
+  local: string,
+  nomeSala: string
+}) => {
   const [selectedStartDate, setSelectedStartDate] = useState(selectedDate);
   const [selectedEndDate, setSelectedEndDate] = useState(selectedDate);
   const [startTime, setStartTime] = useState("7:30");
+  const [selectedInstrutor, setSelectedInstrutor] = useState<InstrutorWithMaterias | undefined>(instrutores[0]);
+  const [selectedMateria, setSelectedMateria] = useState<MateriaData | undefined>(instrutores[0]?.materias[0]);
+  const [desc, setDesc] = useState('');
+
+  useEffect(() => {
+    setSelectedInstrutor(instrutores[0]);
+    setSelectedMateria(instrutores[0]?.materias[0]);
+  }, [instrutores])
 
   const arredondarTempo = (time) => {
     const timeParts = time.split(":");
@@ -44,6 +72,23 @@ const EventFormModal = ({
     const roundedMinutes = Math.ceil(minutes / 30) * 30;
     return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
   };
+
+  const createEvento = async () => {
+    const { data } = await axios.post(`${API_URL}/evento/`, {
+      descricao: desc,
+      data_inicio: formatDate(selectedStartDate),
+      data_fim: formatDate(selectedEndDate),
+      hora_inicio: startTime,
+      hora_fim: endTime,
+      local,
+      nome_sala: nomeSala,
+      instrutor: selectedInstrutor?.id_instrutor,
+      materia: selectedMateria?.id
+    });
+
+    console.log(data);
+    onClose();
+  }
 
   function generateTimeOptions() {
     const options: string[] = [];
@@ -62,33 +107,6 @@ const EventFormModal = ({
     }
     return options;
   }
-  const top100Films = [
-    { label: "Aghata" },
-    { label: "Camila" },
-    { label: "Cléber" },
-    { label: "Croda" },
-    { label: "Dani" },
-    { label: "Doná" },
-    { label: "Francis" },
-    { label: "Ianella" },
-    { label: "Leonardo" },
-    { label: "Luca" },
-    { label: "Roberta" },
-  ];
-
-  const top100Eventos = [
-    { label: "Python" },
-    { label: "Java" },
-    { label: "HTML" },
-    { label: "React" },
-    { label: "Vue" },
-    { label: "SQL" },
-    { label: "Banco de dados" },
-    { label: "Respbarry Pi" },
-    { label: "Arduino" },
-    { label: "IA" },
-    { label: "C#" },
-  ];
 
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     useState(false);
@@ -117,22 +135,30 @@ const EventFormModal = ({
             <div className="w-full h-5/6 flex items-center">
               <div className="w-3/6 h-[90%] flex flex-col items-start gap-4">
                 <InputSelect
-                  options={top100Films.map((film) => ({
-                    label: film.label,
-                    value: film.label,
-                  }))}
-                  onChange={(e) => console.log(e.target.value)}
+                  options={instrutores ? instrutores.map((ins) => ({
+                    label: ins.nome,
+                    value: ins.id_instrutor,
+                  })): []}
+                  onChange={(e) => {
+                    setSelectedInstrutor(instrutores?.find(i => i.id_instrutor == e.target.value))
+                  }}
                 />
                 <InputSelect
-                  options={top100Eventos.map((film) => ({
-                    label: film.label,
-                    value: film.label,
-                  }))}
-                  onChange={(e) => console.log(e.target.value)}
+                  options={selectedInstrutor ? selectedInstrutor.materias.map((mat) => ({
+                    label: mat.nome,
+                    value: mat.id,
+                  })) : []}
+                  onChange={(e) => {
+                    const ms = selectedInstrutor ? selectedInstrutor.materias : []
+                    console.log(ms);
+                    const selected = ms.find(mat => mat.id == e.target.value);
+                    console.log(selected)
+                    setSelectedMateria(selected);
+                  }}
                 />
-                <InputPassword placeholder="*EDV ou senha" />
-                <Input placeholder="*E-mail do responsável" />
-                <Input placeholder="Descrição" />
+                <InputPassword placeholder="*EDV ou senha"/>
+                <Input placeholder="*E-mail do responsável" value={selectedInstrutor?.email}/>
+                <Input placeholder="Descrição" value={desc} onChange={e => {setDesc(e.target.value)}}/>
               </div>
               <div className="w-2/4 h-[90%]">
                 <div className="w-full h-2/6">
@@ -206,8 +232,8 @@ const EventFormModal = ({
                   <InputCheckbox textCheck="Recorrente" />
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
-                  <ButtonCancel nameButton="Cancelar" />
-                  <ButtonConfirm nameButton="Agendar sala" />
+                  <ButtonCancel onClick={onClose} nameButton="Cancelar" />
+                  <ButtonConfirm onClick={createEvento} nameButton="Agendar sala" />
                 </div>
               </div>
             </div>

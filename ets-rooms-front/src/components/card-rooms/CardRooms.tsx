@@ -17,7 +17,7 @@ export default function CardRooms(props: RoomData) {
 
   return (
     <DetalheEvento className="w-5/6 h-1/4 rounded cursor-pointer hover:bg-blue-100 transition-all bg-white p-1 flex shadow-md" {...props}>
-        <div className="w-2 h-full rounded-s bg-purple-800"></div>
+        <div style={{ backgroundColor: props.instrutor_data.cor }} className="w-2 h-full rounded-s"></div>
         <div className="w-full h-full p-2 flex flex-col space-y-1">
           <div className="flex items-center justify-between">
             <h1 className="text-base font-medium">{props.nome_sala}</h1>
@@ -29,11 +29,11 @@ export default function CardRooms(props: RoomData) {
           </div>
           <div>
             <p className="text-sm font-normal space-y-1">
-              Responsável: {props.nome_responsavel}
+              Responsável: {props.instrutor_data.nome}
             </p>
           </div>
           <div>
-            <p className="text-sm font-light text-gray-700">{props.nome_evento}</p>
+            <p className="text-sm font-light text-gray-700">{props.materia_data.nome}</p>
           </div>
         </div>
     </DetalheEvento>

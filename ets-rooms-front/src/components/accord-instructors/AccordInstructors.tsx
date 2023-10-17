@@ -16,30 +16,27 @@ interface Instructor {
 }
 
 export default function AccordInstructors() {
-  const [existingInstructors, setExistingInstructors] = useState<Instructor[]>([]);
-  const [existingColors, setExistingColors] = useState<string[]>([]);
+  const [instructors, setInstructors] = useState<Instructor[]>([]);
 
-    useEffect(() => {
+  useEffect(() => {
     // Fazer a solicitação GET à API Django aqui
     axios
-      .get(`${API_URL}/cad_instrutor/`)
+      .get(`${API_URL}/instrutor/`)
       .then((response) => {
-        const instructors = response.data.results.map((instructor) => {
-          return {
-            cor: instructor.cor,
-            nome: instructor.nome,
-          };
-        });
-
-        const colors = instructors.map((instructor) => instructor.cor);
-
-        setExistingInstructors(instructors);
-        setExistingColors(colors);
+        setInstructors(
+          response.data.map((instructor) => {
+            return {
+              cor: instructor.cor,
+              nome: instructor.nome,
+            };
+          })
+        )
       })
       .catch((error) => {
         console.error("Erro ao obter os dados da API:", error);
       });
   }, []);
+
   return (
     <Accordion
       style={{ boxShadow: "none", marginTop: "1rem", marginBottom: "1rem" }}
@@ -50,7 +47,7 @@ export default function AccordInstructors() {
         id="panel1a-header"
       >
         <Typography className="flex gap-5 flex-wrap">
-          {existingInstructors.map((instructor, index) => (
+          {instructors.map((instructor, index) => (
             <CircleInstructor
               key={index}
               cor={instructor.cor}

@@ -9,6 +9,8 @@ export default function Input(props) {
         required
         title="Por favor, preencha este campo."
         placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
         maxLength={20}
       />
     </>

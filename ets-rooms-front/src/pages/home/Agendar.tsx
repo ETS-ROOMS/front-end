@@ -3,11 +3,13 @@ import axios from 'axios';
 import ButtomDownload from "../../components/buttom-download/buttomDownload";
 import CalendarioSala from '../../components/calendario-sala/CalendarioSala';
 import { API_URL } from '../../config';
-import { ButtonAdmin } from '../../components/floating-buttom-admin/button';
+import { InstrutorData, MateriaData } from '../resume-page/ResumePage'
 
+export type InstrutorWithMaterias = InstrutorData & { materias: MateriaData[] };
 
 function Agendar() {
   const [salas, setSalas] = useState({}); // { 'nome do predio': [{}, {}, {}] } array de salas dentro de cada um
+  const [instrutores, setInstrutores] = useState<InstrutorWithMaterias[]>([]);
 
   useEffect(() => {
     // Buscar os IDs das salas da API Django
@@ -30,6 +32,12 @@ function Agendar() {
     };
 
     fetchIdsSalas();
+
+    (async () => {
+      const { data: _instrutores } = await axios.get(`${API_URL}/instrutor/`);
+
+      setInstrutores(_instrutores)
+    })()
   }, []);
 
   return (
@@ -38,18 +46,18 @@ function Agendar() {
       <ButtomDownload />
       <div className='flex flex-col'>
         {Object.entries(salas).map(([predio, salas]) => (
-          <LinhaCalendarios salas={salas} predio={predio}/>
+          <LinhaCalendarios instrutores={instrutores} salas={salas} predio={predio}/>
         ))}
       </div>
     </main>
   );
 }
 
-function LinhaCalendarios({ predio, salas }) {
+function LinhaCalendarios({ predio, salas, instrutores }) {
   return (
     <div className='flex p-8'>
       <h2 className='text-2xl font-bold p-1 flex items-center'>{predio}</h2>
-      {salas.map(sala => (<CalendarioSala sala={sala} />))}
+      {salas.map(sala => (<CalendarioSala local={predio} instrutores={instrutores} sala={sala} />))}
     </div>
   )
 }

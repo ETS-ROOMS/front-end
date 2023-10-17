@@ -20,15 +20,15 @@ const meses = {
 };
 
 function DetalheEvento({
-  nome_responsavel,
   data_inicio,
   data_fim,
   children,
   descricao,
   hora_fim: finalHorario,
   hora_inicio: inicioHorario,
-  nome_evento: nomeEvento,
   nome_sala: nomeSala,
+  instrutor_data: instrutor,
+  materia_data: materia,
   className
 }: RoomData & { children: any, className: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,8 +59,6 @@ function DetalheEvento({
 
   const prédio = "Ca600";
 
-  const email = "Cleber.Augusto@br.bosch.com";
-
   return (
     <>
       <div
@@ -78,7 +76,7 @@ function DetalheEvento({
             </h2>
 
             <div className="my-4">
-              <h1 className="font-bold mb-4">Responsável: {nome_responsavel}</h1>
+              <h1 className="font-bold mb-4">Responsável: {instrutor.nome}</h1>
 
               <div className="gap-8">
                 {/* DATA E HORÁRIO */}
@@ -243,7 +241,7 @@ function DetalheEvento({
                       </clipPath>
                     </defs>
                   </svg>
-                  <p className="text-[#007BC0] cursor-pointer">{email}</p>
+                  <p className="text-[#007BC0] cursor-pointer">{instrutor.email}</p>
                 </div>
 
                 {/* NOME DO EVENTO E DESCRIÇÃO */}
@@ -286,7 +284,7 @@ function DetalheEvento({
                   </svg>
 
                   <p>
-                    {nomeEvento} - {descricao}
+                    {materia.nome} - {descricao}
                   </p>
                 </div>
               </div>
