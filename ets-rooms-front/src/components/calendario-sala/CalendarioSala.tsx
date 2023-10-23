@@ -43,9 +43,6 @@ export default function CalendarioSala({ sala, instrutores, local }) {
           <h1 className="font-bold whitespace-nowrap">{sala.nome_sala}</h1>
         </div>
         <div className="flex gap-3">
-          <Link to={"/edit"}>
-            <PiNotePencilBold />
-          </Link>
           <InfoSala {...sala} />
         </div>
       </div>
