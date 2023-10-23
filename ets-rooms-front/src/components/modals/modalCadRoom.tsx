@@ -51,7 +51,7 @@ export default function ModalCadRoom({
     }
   };
 
-  const top100Eventos = [
+  const predios = [
     { label: "" },
     { label: "Ca170" },
     { label: "Ca140" },
@@ -60,11 +60,10 @@ export default function ModalCadRoom({
 
   return (
     <>
-      <Button onClick={handleOpen}>Open Modal</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <div className="w-[94%] h-[94%] hover:bg-yellow-400 transition-all ease-in-out">
-            <div className="w-full h-12 bg border-b border-gray-400 hover:bg-blue-400 transition-all ease-in-out">
+          <div className="w-[94%] h-[94%] transition-all ease-in-out">
+            <div className="w-full h-12 bg border-b border-gray-400 transition-all ease-in-out">
               <h1 className="text-2xl font-normal">Cadastrar sala</h1>
             </div>
             <div className="w-full h-5/6 flex flex-row  hover:bg-red-400 transition-all ease-in-out">
@@ -73,7 +72,7 @@ export default function ModalCadRoom({
 
                 <InputSelect
                   placeholder="*Nome da sala"
-                  options={top100Eventos.map((film) => ({
+                  options={predios.map((film) => ({
                     label: film.label,
                     value: film.label,
                   }))}
@@ -81,7 +80,7 @@ export default function ModalCadRoom({
                 />
 
                 <Input placeholder="*Localização da sala" />
-                <div className="w-full h-3/6 hover:bg-purple-400 transition-all ease-in-out ">
+                <div className="w-full h-3/6 transition-all ease-in-out ">
                   <h1 className="text-gray-400 text-sm">
                     Preencha a seguir com as quantidades na sala:
                   </h1>
@@ -139,27 +138,31 @@ export default function ModalCadRoom({
                 </div>
               </div>
               <div className="w-1/2 h-2/5 hover:bg-purple-200 transition-all ease-in-out  space-y-4 ">
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageUpload}
-                />
-                <Carousel className="w-80">
-                  {images.map((image, index) => (
-                    <img
-                      className="rounded-md"
-                      key={index}
-                      src={URL.createObjectURL(image)}
-                      alt={`Imagem ${index + 1}`}
-                    />
-                  ))}
-                </Carousel>
+
+                {/* <Input className='w-1/5' placeholder="*Cadastre novas imagens da sala +" />
+              <Carousel className='w-2/5 bg-pink-300'>
+                {salaImages.map((image, index) => (
+                  <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+                ))}
+              </Carousel> */}
+                <div className=" w-64 h-2/5 transition-all ease-in-out  space-y-4 ">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                  />
+                  <Carousel className='w-80 '>
+                    {salaImages.map((image, index) => (
+                      <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+                    ))}
+                  </Carousel>
+                </div>
+                <div className="w-full h-full  flex justify-end pt-3">
+                  <ButtonCancel nameButton="Cancelar" />
+                  <ButtonConfirm onClick={() => { }} nameButton="Cadastrar" />
+                </div>
               </div>
-            </div>
-            <div className="w-full h-full  flex justify-end pt-3">
-              <ButtonCancel nameButton="Cancelar" />
-              <ButtonConfirm onClick={() => {}} nameButton="Cadastrar" />
             </div>
           </div>
         </Box>
