@@ -97,7 +97,6 @@ export default function ModalEditAgendamento() {
 
   return (
     <>
-      <Button onClick={handleOpen}>Open Modal</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <div className="w-[94%] h-[94%]">
@@ -137,7 +136,7 @@ export default function ModalEditAgendamento() {
                       <div className="grid grid-flow-col grid-rows-2 gap-3">
                         <div className="w-full flex items-center gap-3">
                           <p>*Início</p>
-                          <InputDate sizeW="w-32" sizeH="h-10" />
+                          <InputDate sizeW="w-32" sizeH="h-10" defaultValue={undefined} onChange={undefined} />
                           <InputTimer
                             sizeW="w-24"
                             sizeH="h-10"
@@ -150,7 +149,7 @@ export default function ModalEditAgendamento() {
                         </div>
                         <div className="w-full flex items-center gap-3">
                           <p className="pr-3">*Fim</p>
-                          <InputDate sizeW="w-32" sizeH="h-10" />
+                          <InputDate sizeW="w-32" sizeH="h-10" defaultValue={undefined} onChange={undefined} />
                           <InputTimer
                             sizeW="w-24"
                             sizeH="h-10"
@@ -171,7 +170,7 @@ export default function ModalEditAgendamento() {
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
                   <ButtonCancel nameButton="Cancelar" />
-                  <ButtonConfirm nameButton="Editar" />
+                  <ButtonConfirm nameButton="Editar" onClick={undefined} />
                 </div>
               </div>
             </form>

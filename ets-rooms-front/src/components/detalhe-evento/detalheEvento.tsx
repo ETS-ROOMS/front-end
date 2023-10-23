@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import { RoomData } from "../../pages/resume-page/ResumePage";
+import ModalEditAgendamento from "../modals/modalEditAgendamento";
 
 const meses = {
   '1': "Janeiro",
@@ -139,6 +138,7 @@ function DetalheEvento({
                     </defs>
                   </svg>
 
+                 
                   <div>
                     <div className="flex gap-2 text-sm">
                       <p className="text-[#71767C] font-bold">De</p>
@@ -153,17 +153,21 @@ function DetalheEvento({
                       </p>
                     </div>
                   </div>
+
+                  
                   <div className="text-[#71767C]">
                     <p>{inicioHorario?.substring(0, inicioHorario.length - 3)}</p>
                     <p>{finalHorario?.substring(0, finalHorario.length - 3)}</p>
                   </div>
                 </div>
-                <p className="text-xs text-[#A4ABB3] ml-14 mb-4">
+
+                 {/* RECORRÊNCIA */}
+                {/* <p className="text-xs text-[#A4ABB3] ml-14 mb-4">
                   {recorrencia}
-                </p>
+                </p> */}
 
                 {/* SALA E PRÉDIO */}
-                <div className="flex gap-8 items-center mb-4">
+                <div className="flex gap-8 items-center my-4">
                   <svg
                     width="24"
                     height="24"
@@ -294,7 +298,7 @@ function DetalheEvento({
               <button
                 type="submit"
                 className=" text-black rounded-lg p-2 px-4 hover:bg-[#d1d1d182] cursor-pointer"
-                onClick={closeModal}
+                onClick={ModalEditAgendamento}
               >
                 Editar
               </button>
