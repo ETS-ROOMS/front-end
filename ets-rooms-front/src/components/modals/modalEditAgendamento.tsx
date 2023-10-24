@@ -117,13 +117,20 @@ export default function ModalEditAgendamento() {
                   }))}
                   onChange={(e) => console.log(e.target.value)}
                 />
+                {/* {isFormDirty && ( */}
+
+              
                 <Input
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
+                  
+                  // onChange={handleInputChange}
                   placeholder="*EDV ou senha"
                   required
                   title="Por favor, preencha este campo."
                 />
+
+                {/* )} */}
                 <InputDisable value="Leonardo.Oliveira@br.bosch.com" disabled />
                 <Input
                   inputValue={inputValue}
@@ -186,3 +193,7 @@ export default function ModalEditAgendamento() {
     </>
   );
 }
+function setError(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+

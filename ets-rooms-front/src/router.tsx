@@ -9,6 +9,8 @@ import ModalCadRoom from "./components/modals/modalCadRoom";
 import ModalEditAgendamento from "./components/modals/modalEditAgendamento";
 import ModalExcluir from "./components/modals/modalExcluir";
 import DeleteAlert from "./components/modals/alerts/DeleteAlert";
+import Login from "./components/login-admin/Login";
+
 
 export default function Router() {
   return (
@@ -17,10 +19,12 @@ export default function Router() {
         <Route path="/" Component={Agendar} />
         <Route path="/resumo" Component={ResumePage} />
         <Route path="/editar" Component={EditEvent} />
+        <Route path="/painel" Component={Login} />
         <Route path="/mapa" Component={Mapa} />
         <Route path="/modal" Component={ModalCadInstructors} />
         <Route path="/modal2" Component={ModalCadRoom} />
         <Route path="/modal3" Component={ModalEditAgendamento} />
+        
       </Routes>
     </BrowserRouter>
   );
