@@ -4,55 +4,20 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar"; // Importe os outros componentes necessários
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import EventFormModal from "../event-form-modal/EventFormModal";
-import { FcInfo } from "react-icons/fc";
+import InfoSala from '../../components/buttom-infosala/BotaoInfoSala';
 import { PiNotePencilBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
-export default function CalendarioSala({ sala }) {
+export default function CalendarioSala({ sala, instrutores, local }) {
   const [showForm, setShowForm] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("07:30");
   const [endTime, setEndTime] = useState("17:00");
-  const [eventos, setEventos] = useState([]);
 
-  useEffect(() => {
-    fetchEventos();
-  }, []);
-
-  const fetchEventos = async () => {
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/evento/?format=json`
-      );
-      setEventos(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar Eventos:", error);
-    }
-  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setShowForm(false);
-
-    const formData = new FormData(event.target);
-    const eventData = {
-      nome_responsavel: formData.get("NomeResponsavel"),
-      nome_evento: formData.get("eventName"),
-      edv_cliente: formData.get("edv"),
-      email: formData.get("responsible"),
-      descricao: formData.get("description"),
-      data_fim: formData.get("datainicio"),
-      data_inicio: formData.get("datafim"),
-      hora_inicio: formData.get("startTime"),
-      hora_fim: formData.get("endTime"),
-    };
-
-    try {
-      await axios.post(`http://127.0.0.1:8000/evento/`, eventData);
-      fetchEventos();
-    } catch (error) {
-      console.error("Erro ao enviar Evento:", error);
-    }
+    
   };
 
   const handleDateClick = (value) => {
@@ -78,10 +43,7 @@ export default function CalendarioSala({ sala }) {
           <h1 className="font-bold whitespace-nowrap">{sala.nome_sala}</h1>
         </div>
         <div className="flex gap-3">
-          <Link to={"/edit"}>
-            <PiNotePencilBold />
-          </Link>
-          <FcInfo />
+          <InfoSala {...sala} />
         </div>
       </div>
       <Calendar
@@ -95,6 +57,7 @@ export default function CalendarioSala({ sala }) {
         tileDisabled={({ date }) => date.getFullYear() !== 2023}
       />
       <EventFormModal
+        instrutores={instrutores}
         showForm={showForm}
         onClose={handleCloseForm}
         handleFormSubmit={handleFormSubmit}
@@ -103,6 +66,8 @@ export default function CalendarioSala({ sala }) {
         endTime={endTime}
         setEndTime={setEndTime}
         selectedDate={selectedDate}
+        local={local}
+        nomeSala={sala.nome_sala}
       />
     </div>
   );

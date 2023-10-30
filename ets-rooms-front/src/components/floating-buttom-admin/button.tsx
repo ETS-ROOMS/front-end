@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ModalCadInstructors from '../modals/modalCadInstructor';
+import ModalCadRoom from '../modals/modalCadRoom';
 
 const casa = <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8861 1.21065C12.2472 0.929784 12.7528 0.929784 13.1139 1.21065L22.1139 8.21065C22.3575 8.4001 22.5 8.69141 22.5 9V20C22.5 20.7957 22.1839 21.5587 21.6213 22.1213C21.0587 22.6839 20.2957 23 19.5 23H5.5C4.70435 23 3.94129 22.6839 3.37868 22.1213C2.81607 21.5587 2.5 20.7957 2.5 20V9C2.5 8.69141 2.64247 8.4001 2.88606 8.21065L11.8861 1.21065ZM4.5 9.48908V20C4.5 20.2652 4.60536 20.5196 4.79289 20.7071C4.98043 20.8946 5.23478 21 5.5 21H19.5C19.7652 21 20.0196 20.8946 20.2071 20.7071C20.3946 20.5196 20.5 20.2652 20.5 20V9.48908L12.5 3.26686L4.5 9.48908Z" fill="white"/>
@@ -16,6 +18,8 @@ const lapis = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns=
 
 export function ButtonAdmin() {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [cadastroInstrutoresOpen, setCadastroInstrutoresOpen] = useState(false);
+    const [cadastroSalaOpen, setCadastroSalaOpen] = useState(false);
 
     const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
@@ -37,7 +41,6 @@ export function ButtonAdmin() {
                 `}
                 onClick={toggleExpansion}
             >
-
                 <svg
                     width="24"
                     height="24"
@@ -64,18 +67,24 @@ export function ButtonAdmin() {
 
             {isExpanded ? (
                 <div className={`absolute top-32 right-0 mr-16 flex flex-col items-center`}>
-                    <IconBtn label='Cadastrar sala' icon={casa}/>
-                    <IconBtn label='Cadastrar instrutor' icon={pessoa}/>
-                    <IconBtn label='Editar sala ou instrutor' icon={lapis}/>
+                    <IconBtn onClick={() => {
+                        setCadastroSalaOpen(true);
+                    }} label='Cadastrar sala' icon={casa} />
+                    <IconBtn onClick={() => {
+                        setCadastroInstrutoresOpen(true);
+                    }} label='Cadastrar instrutor' icon={pessoa}/>
+                    <IconBtn onClick={() => {}} label='Editar sala ou instrutor' icon={lapis}/>
                 </div>
             ): null}
+            <ModalCadInstructors open={cadastroInstrutoresOpen} setOpen={setCadastroInstrutoresOpen} />
+            <ModalCadRoom open={cadastroSalaOpen} setOpen={setCadastroSalaOpen} />
         </div>
     );
 }
 
-function IconBtn({ label, icon }: { label: string, icon: typeof casa }) {
+function IconBtn({ label, icon, onClick }: { label: string, icon: typeof casa, onClick: React.MouseEventHandler<HTMLButtonElement> | undefined }) {
     return (
-        <button className="mb-2 flex flex-col items-center justify-center">
+        <button onClick={onClick} className="mb-2 flex flex-col items-center justify-center">
             <div className='bg-[#57449C] w-10 h-10 rounded-full text-white flex items-center justify-center hover:bg-[#9D89E8]'>
                 {icon}
             </div>

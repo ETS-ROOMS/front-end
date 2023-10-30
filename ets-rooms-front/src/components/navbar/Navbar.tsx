@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Navbar() {
+  const day = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
   return (
     <>
       <header className="sticky top-0 z-10 bg-white">
@@ -27,12 +28,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/mapa">
-                  Ver mapa geral
-                </a>
-              </li>
-              <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/resumo">
+                <a className="text-lg hover:border-b-2 border-b-black" href={`/resumo/${day}`}>
                   Resumo de hoje
                 </a>
               </li>
