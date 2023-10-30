@@ -12,6 +12,7 @@ import InputCheckbox from "../inputs/InputCheckbox";
 import InputSelect from "../inputs/InputSelect";
 import InputDate from "../inputs/InputDate";
 import { render } from "react-dom";
+import DeleteAlert from "./alerts/DeleteAlert";
 
 const style = {
   position: "absolute",
@@ -50,17 +51,6 @@ export default function ModalEditAgendamento() {
     return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
   };
 
-  function MiniModal() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const openModal = () => {
-      setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-      setIsModalOpen(false);
-    };
-  }
   function generateTimeOptions() {
     const options: string[] = [];
     const startTime = 7 * 60 + 30;
@@ -95,6 +85,16 @@ export default function ModalEditAgendamento() {
     { label: "C#" },
   ];
 
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  const handleOpenDeleteModal = () => {
+    setOpenDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setOpenDeleteModal(false);
+  };
+
   return (
     <>
       <Modal open={open} onClose={handleClose}>
@@ -102,7 +102,7 @@ export default function ModalEditAgendamento() {
           <div className="w-[94%] h-[94%]">
             <div className="w-full h-12 bg border-b border-gray-400  flex justify-between">
               <h1 className="text-2xl font-normal">Editar agendamento</h1>
-              <button onClick={MiniModal}>
+              <button onClick={handleOpenDeleteModal}>
                 <TrashIcon size={30} color="#000" />
               </button>
             </div>
@@ -116,12 +116,20 @@ export default function ModalEditAgendamento() {
                   }))}
                   onChange={(e) => console.log(e.target.value)}
                 />
+                {/* {isFormDirty && ( */}
+
+              
                 <Input
                   inputValue={inputValue}
                   onInputChange={handleInputChange}
+                  
+                  // onChange={handleInputChange}
                   placeholder="*EDV ou senha"
-                  required title="Por favor, preencha este campo."
+                  required
+                  title="Por favor, preencha este campo."
                 />
+
+                {/* )} */}
                 <InputDisable value="Leonardo.Oliveira@br.bosch.com" disabled />
                 <Input
                   inputValue={inputValue}
@@ -159,7 +167,7 @@ export default function ModalEditAgendamento() {
                               setEndTime(arredondarTempo(e.target.value))
                             }
                           />
-                          <p className="text-gray-400">30min</p>
+                          {/* <p className="text-gray-400">30min</p> */}
                         </div>
                       </div>
                     </div>
@@ -170,13 +178,22 @@ export default function ModalEditAgendamento() {
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
                   <ButtonCancel nameButton="Cancelar" />
-                  <ButtonConfirm nameButton="Editar" onClick={undefined} />
+                  <ButtonConfirm
+                    nameButton="Editar"
+                    colorButton="bg-blue-500"
+                    onClick={undefined}
+                  />
                 </div>
               </div>
             </form>
           </div>
         </Box>
       </Modal>
+      <DeleteAlert open={openDeleteModal} onClose={handleCloseDeleteModal} />
     </>
   );
 }
+function setError(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+

@@ -62,12 +62,13 @@ export default function ModalCadRoom({
     <>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <div className="w-[94%] h-[94%] transition-all ease-in-out">
-            <div className="w-full h-12 bg border-b border-gray-400 transition-all ease-in-out">
+          <div className="w-[94%] h-[94%] ">
+            <div className="w-full h-12 bg border-b ">
               <h1 className="text-2xl font-normal">Cadastrar sala</h1>
             </div>
-            <div className="w-full h-5/6 flex flex-row my-4">
-              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4">
+            <div className="w-full h-5/6 flex flex-row  ">
+              
+              <div className="w-3/6 h-[90%] flex flex-col items-start gap-4 ">
                 <Input placeholder="*Nome da sala" />
 
                 <InputSelect
@@ -80,7 +81,7 @@ export default function ModalCadRoom({
                 />
 
                 <Input placeholder="*Localização da sala" />
-                <div className="w-full h-3/6 transition-all ease-in-out ">
+                <div className="w-full h-3/6  ">
                   <h1 className="text-gray-400 text-sm">
                     Preencha a seguir com as quantidades na sala:
                   </h1>
@@ -188,24 +189,25 @@ export default function ModalCadRoom({
                   </div>
                 </div>
               </div>
-              <div className="w-1/2 h-2/5 space-y-4 ">
-
-                <div className=" w-64 h-2/5 transition-all ease-in-out  space-y-4 ">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleImageUpload}
-                  />
-                  
-
-                </div>
-                <div className="w-full h-full  flex justify-end pt-3">
-                  <ButtonCancel nameButton="Cancelar" />
-                  <ButtonConfirm onClick={() => { }} nameButton="Cadastrar" />
-                </div>
-              </div>
+              {/* <Input className='w-1/5' placeholder="*Cadastre novas imagens da sala +" />
+              <Carousel className='w-2/5 bg-pink-300'>
+                {salaImages.map((image, index) => (
+                  <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+                ))}
+              </Carousel> */}
+              <div className=" w-64 h-2/5   space-y-4 ">
+              <Input className='w-64' placeholder="*Cadastre imagens da sala +" />
+              <Carousel className='w-80 '>
+                {salaImages.map((image, index) => (
+                  <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+                ))}
+              </Carousel>
             </div>
+            </div>
+            <div className="w-full h-full  flex justify-end pt-3">
+                      <ButtonCancel nameButton="Cancelar" />
+                      <ButtonConfirm nameButton="Cadastrar" onClick={undefined} colorButton="bg-blue-500"/>
+                    </div>
           </div>
         </Box>
       </Modal>
