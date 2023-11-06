@@ -13,6 +13,9 @@ import { API_URL } from "../../config";
 import axios from "axios";
 import { MateriaData } from "../../pages/resume-page/ResumePage";
 import { formatDate } from "../../utils/date";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
 
 const style = {
   position: "absolute",
@@ -60,6 +63,9 @@ const EventFormModal = ({
   const [selectedInstrutor, setSelectedInstrutor] = useState<InstrutorWithMaterias | undefined>(instrutores[0]);
   const [selectedMateria, setSelectedMateria] = useState<MateriaData | undefined>(instrutores[0]?.materias[0]);
   const [desc, setDesc] = useState('');
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
 
   useEffect(() => {
     setSelectedInstrutor(instrutores[0]);
@@ -73,22 +79,39 @@ const EventFormModal = ({
     return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
   };
 
+  const openAlert = (message) => {
+    setAlertMessage(message);
+    setIsAlertOpen(true);
+  };
+
+  const closeAlert = () => {
+    setIsAlertOpen(false);
+  };
+  
+  
+
   const createEvento = async () => {
-    const { data } = await axios.post(`${API_URL}/evento/`, {
-      descricao: desc,
-      data_inicio: formatDate(selectedStartDate),
-      data_fim: formatDate(selectedEndDate),
-      hora_inicio: startTime,
-      hora_fim: endTime,
-      local,
-      nome_sala: nomeSala,
-      instrutor: selectedInstrutor?.id_instrutor,
-      materia: selectedMateria?.id
+    try {
+      const { data } = await axios.post(`${API_URL}/evento/`, {
+        descricao: desc,
+        data_inicio: formatDate(selectedStartDate),
+        data_fim: formatDate(selectedEndDate),
+        hora_inicio: startTime,
+        hora_fim: endTime,
+        local,
+        nome_sala: nomeSala,
+        instrutor: selectedInstrutor?.id_instrutor,
+        materia: selectedMateria?.id
     });
 
     console.log(data);
     onClose();
+    openAlert("Agendamento realizado com sucesso!");
+  } catch (error) {
+    console.error(error);
+    // Trate os erros conforme necessário
   }
+};
 
   function generateTimeOptions() {
     const options: string[] = [];
@@ -240,6 +263,21 @@ const EventFormModal = ({
           </div>
         </Box>
       </Modal>
+      <Snackbar
+        open={isAlertOpen}
+        autoHideDuration={6000} // Controla por quanto tempo o alerta é exibido (em milissegundos)
+        onClose={closeAlert}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          severity="success" // Você pode alterar para 'error', 'warning', 'info' conforme necessário
+          onClose={closeAlert}
+        >
+          {alertMessage}
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 };

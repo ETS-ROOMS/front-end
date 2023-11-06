@@ -1,3 +1,3 @@
 
-export const API_URL = "https://vigilant-meme-wq9wxvg99wvcgwg7-8000.app.github.dev/"; 
+export const API_URL = "http://127.0.0.1:8000/"; 
 //sempre trocar pela URL do codespace da API, ou pelo https://127.0.0.1/
