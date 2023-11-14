@@ -65,6 +65,7 @@ const EventFormModal = ({
   const [desc, setDesc] = useState('');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [recorrencia, setRecorrencia] = useState(false);
 
 
   useEffect(() => {
@@ -87,12 +88,10 @@ const EventFormModal = ({
   const closeAlert = () => {
     setIsAlertOpen(false);
   };
-  
-  
 
   const createEvento = async () => {
     try {
-      const { data } = await axios.post(`${API_URL}/evento/`, {
+      const payload = {
         descricao: desc,
         data_inicio: formatDate(selectedStartDate),
         data_fim: formatDate(selectedEndDate),
@@ -101,8 +100,11 @@ const EventFormModal = ({
         local,
         nome_sala: nomeSala,
         instrutor: selectedInstrutor?.id_instrutor,
-        materia: selectedMateria?.id
-    });
+        materia: selectedMateria?.id,
+        recorrencia,
+        tipo_recorrencia: 'mensal'
+    };
+    const { data } = await axios.post(`${API_URL}/evento/`, payload);
 
     console.log(data);
     onClose();
@@ -196,17 +198,9 @@ const EventFormModal = ({
                             defaultValue={
                               selectedDate.toISOString().split("T")[0]
                             }
-                            onChange={(e) =>
-                              setSelectedStartDate(
-                                new Date(
-                                  selectedDate.getFullYear(),
-                                  selectedDate.getMonth(),
-                                  selectedDate.getDate(),
-                                  new Date(e.target.value).getHours(),
-                                  new Date(e.target.value).getMinutes()
-                                )
-                              )
-                            }
+                            onChange={(e) => {
+                              setSelectedStartDate(e.target.value);
+                            }}
                           />
                           <InputTimer
                             sizeW="w-24"
@@ -226,17 +220,9 @@ const EventFormModal = ({
                             defaultValue={
                               selectedDate.toISOString().split("T")[0]
                             }
-                            onChange={(e) =>
-                              setSelectedEndDate(
-                                new Date(
-                                  selectedDate.getFullYear(),
-                                  selectedDate.getMonth(),
-                                  selectedDate.getDate(),
-                                  new Date(e.target.value).getHours(),
-                                  new Date(e.target.value).getMinutes()
-                                )
-                              )
-                            }
+                            onChange={(e) => {
+                              setSelectedEndDate(e.target.value);
+                            }}
                           />
                           <InputTimer
                             sizeW="w-24"
@@ -252,7 +238,11 @@ const EventFormModal = ({
                   </div>
                 </div>
                 <div className="w-full h-3/5">
-                  <InputCheckbox textCheck="Recorrente" />
+                  <InputCheckbox 
+                    value={recorrencia} 
+                    onChange={(e) => setRecorrencia(e.target.checked)} 
+                    textCheck="Recorrente" 
+                    />
                 </div>
                 <div className="w-full h-full flex justify-between pt-3">
                   <ButtonCancel onClick={onClose} nameButton="Cancelar" />
