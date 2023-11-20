@@ -12,7 +12,7 @@ export default function Input(props) {
         title="Por favor, preencha este campo."
         placeholder={props.placeholder}
         value={props.value}
-        onChange={props.onChange}
+        onChange={(e) => { props.onChange(e.target.value) }}
         maxLength={20}
       />
     </>

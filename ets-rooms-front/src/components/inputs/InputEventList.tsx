@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function InputEventList(props) {
   const [event, setEvent] = useState<string>("");
-  const [eventList, setEventList] = useState<string[]>([]);
   const [eventCount, setEventCount] = useState(0); // Contador de matérias adicionadas
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +15,7 @@ export default function InputEventList(props) {
   const handleAddEvent = () => {
     if (eventCount < 5) {
       if (event.trim() !== "") {
-        if (eventList.includes(event)) {
+        if (props.value.includes(event)) {
           toast.error("A matéria já existe na lista!", {
             position: "bottom-right",
             autoClose: 3000,
@@ -28,7 +27,7 @@ export default function InputEventList(props) {
             theme: "light",
           });
         } else {
-          setEventList([...eventList, event]);
+          props.onChange([...props.value, event]);
           setEventCount(eventCount + 1);
           setEvent(""); // Limpa o campo de entrada após a adição
         }
@@ -48,8 +47,8 @@ export default function InputEventList(props) {
   };
 
   const handleDeleteEvent = (index: number) => {
-    const updatedEventList = eventList.filter((_, idx) => idx !== index);
-    setEventList(updatedEventList);
+    const updatedEventList = props.value.filter((_, idx) => idx !== index);
+    props.onChange(updatedEventList);
   };
 
   return (
@@ -75,7 +74,7 @@ export default function InputEventList(props) {
         </div>
         <div className="w-full h-36 overflow-auto">
           <div className="flex justify-center p-3 flex-col gap-3">
-            {eventList.map((evt, index) => (
+            {props.value.map((evt, index) => (
               <div
                 className="w-11/12 h-8 text-base pl-2 rounded flex justify-between items-center bg-gray-100"
                 key={index}

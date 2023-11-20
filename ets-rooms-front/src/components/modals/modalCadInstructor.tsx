@@ -32,13 +32,12 @@ interface Instructor {
   edv: string;
   email: string;
   cor: string;
-  materias: string;
+  materias: string[];
 }
 
 export default function ModalCadInstructors({ open, setOpen }: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [selectedColor, setSelectedColor] = useState("#000");
   const [inputValue, setInputValue] = useState("");
   const [existingInstructors, setExistingInstructors] = useState<Instructor[]>(
     []
@@ -49,8 +48,8 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
     nome: "",
     edv: "",
     email: "",
-    cor: "",
-    materias: "",
+    cor: "#000",
+    materias: [],
   });
 
   const handleInputChange = (name, value) => {
@@ -61,7 +60,7 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
   };
 
   const handleColorChange = (color) => {
-    setSelectedColor(color);
+    setFormData(p => ({...p, cor: color }));
   };
 
   const handleFormSubmit = async () => {
@@ -69,10 +68,12 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
       formData.cor.trim() === "" ||
       formData.edv.trim() === "" ||
       formData.email.trim() === "" ||
-      formData.materias.trim() === "" 
+      formData.materias.length === 0 
     ) {
       alert("Preencha todos os campos obrigatórios.");
     }
+
+    console.log('formdata', formData);
   
     try {
       const response = await axios.post(`${API_URL}/instrutor/`, formData);
@@ -89,7 +90,7 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
     axios
       .get(`${API_URL}/instrutor/`)
       .then((response) => {
-        const instructors = response.data.results.map((instructor) => {
+        const instructors = response.data.map((instructor) => {
           return {
             cor: instructor.cor,
             nome: instructor.nome,
@@ -122,18 +123,18 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
                   placeholder="*Nome do instrutor"
                 />
                 <Input
-                  inputValue={formData.edv}
-                  onInputChange={(value) => handleInputChange("edv", value)}
+                  value={formData.edv}
+                  onChange={(value) => handleInputChange("edv", value)}
                   placeholder="*EDV"
                 />
                 <Input
-                  inputValue={formData.email}
-                  onInputChange={(value) => handleInputChange("email", value)}
+                  value={formData.email}
+                  onChange={(value) => handleInputChange("email", value)}
                   placeholder="*E-mail do instrutor"
                 />
                 <InputEventList
-                  inputValue={formData.materias}
-                  onInputChange={(value) =>
+                  value={formData.materias}
+                  onChange={(value) =>
                     handleInputChange("materias", value)
                   }
                   placeholder="*Adicionar matéria ou evento"
@@ -144,14 +145,14 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
                   <div>
                     <p className="text-gray-400 text-sm pb-1">Sua Cor:</p>
                     <div className="flex">
-                      <CircleInstructor cor={selectedColor} nome={inputValue} />
+                      <CircleInstructor cor={formData.cor} nome={inputValue} />
                       <p>{formData.nome}</p>
                     </div>
                   </div>
                   <div className="">
                     <p className="text-gray-400 text-sm">Mudar Cor:</p>
                     <Colorful
-                      selectedColor={selectedColor}
+                      selectedColor={formData.cor}
                       onColorChange={handleColorChange}
                     />
                   </div>
