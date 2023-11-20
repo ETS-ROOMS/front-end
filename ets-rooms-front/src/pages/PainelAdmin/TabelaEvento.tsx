@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonAdmin } from '../../components/floating-buttom-admin/button';
+import { API_URL } from '../../config';
+import axios from 'axios';
 
-interface Evento {
-  id_Evento: number;
-  nome_responsavel: string;
-  nome_sala: string;
-  hora_inicio: string;
-  hora_fim: string;
-  data_inicio: string;
-  data_fim: string;
-  nome_evento: string;
-  historico:string;
-  local:string
+export interface Evento {
+    id_Evento:      string;
+    descricao:      string;
+    data_inicio:    string;
+    data_fim:       string;
+    hora_inicio:    string;
+    hora_fim:       string;
+    local:          string;
+    nome_sala:      string;
+    historico:      string;
+    instrutor:      string;
+    materia:        number;
+    instrutor_data: InstrutorData;
+    materia_data:   MateriaData;
+}
+
+export interface InstrutorData {
+    id_instrutor: string;
+    nome:         string;
+    edv:          string;
+    email:        string;
+    cor:          string;
+}
+
+export interface MateriaData {
+    id:        number;
+    nome:      string;
+    instrutor: string;
 }
 
 interface EventoTabelaProps {
@@ -47,11 +66,11 @@ const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
         <tbody className="bg-white divide-y divide-gray-200">
           {eventos.map((evento) => (
             <tr key={evento.id_Evento}>
-              <td className="px-6 py-4 whitespace-no-wrap ">{evento.nome_responsavel}</td>
+              <td className="px-6 py-4 whitespace-no-wrap ">{evento.instrutor_data.nome}</td>
               <td className="px-6 py-4 whitespace-no-wrap border-gray-500">{evento.local} - {evento.nome_sala}</td>
               <td className="px-6 py-4 whitespace-no-wrap">{evento.data_inicio} ás {evento.hora_inicio}</td>
-              <td className="px-6 py-4 whitespace-no-wrap">{evento.nome_evento}</td>
-              <td className="px-6 py-4 whitespace-no-wrap">{evento.historico}</td>
+              <td className="px-6 py-4 whitespace-no-wrap">{evento.materia_data.nome}</td>
+              <td className="px-6 py-4 whitespace-no-wrap">{new Date(evento.historico).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>
@@ -63,7 +82,16 @@ const EventoTabela: React.FC<EventoTabelaProps> = ({ eventos }) => {
 };
 
 function EventoTabelaPage() {
-  return <EventoTabela eventos={[]} />
+  const [eventos, setEventos] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API_URL}/evento/`)
+      .then(res => {
+        setEventos(res.data);
+      });
+  }, []);
+
+  return <EventoTabela eventos={eventos} />
 }
 
 export default EventoTabelaPage;
