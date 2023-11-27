@@ -264,7 +264,7 @@ const InfoSala: React.FC<InfoSalaProps> = ({
                       </clipPath>
                     </defs>
                   </svg>
-                  {`${salaInfo.computadores} computadores`}
+                  {`${computador} computadores`}
                 </div>
                 <div className="flex gap-2">
                   <svg
@@ -301,7 +301,7 @@ const InfoSala: React.FC<InfoSalaProps> = ({
                       </clipPath>
                     </defs>
                   </svg>
-                  {`${salaInfo.quadroBranco} quadro branco`}
+                  {`${quadro_branco} quadro branco`}
                 </div>
                 <div className="flex gap-2">
                   <svg
@@ -338,13 +338,13 @@ const InfoSala: React.FC<InfoSalaProps> = ({
                       </clipPath>
                     </defs>
                   </svg>
-                  {`${salaInfo.televisao} televisão`}
+                  {`${televisao} televisão`}
                 </div>
               </div>
             </div>
 
             <Carousel>
-              {salaImages.map((image, index) => (
+              {images.map((image, index) => (
                 <img
                   className="rounded-md"
                   key={index}

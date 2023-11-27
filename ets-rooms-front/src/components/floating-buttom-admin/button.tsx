@@ -73,7 +73,6 @@ export function ButtonAdmin() {
                     <IconBtn onClick={() => {
                         setCadastroInstrutoresOpen(true);
                     }} label='Cadastrar instrutor' icon={pessoa}/>
-                    <IconBtn onClick={() => {}} label='Editar sala ou instrutor' icon={lapis}/>
                 </div>
             ): null}
             <ModalCadInstructors open={cadastroInstrutoresOpen} setOpen={setCadastroInstrutoresOpen} />

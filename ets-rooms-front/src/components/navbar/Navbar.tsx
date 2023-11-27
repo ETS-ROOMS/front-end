@@ -33,7 +33,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="p-4">
-                <a className="text-lg hover:border-b-2 border-b-black" href="/painel">
+                <a className="text-lg hover:border-b-2 border-b-black" href="/evento-tabela">
                   Painel de controle
                 </a>
               </li>

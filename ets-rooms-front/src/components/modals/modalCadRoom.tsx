@@ -28,8 +28,6 @@ const style = {
   zIndex: "2",
 };
 
-const salaImages = ["/sala_verde1.png", "/sala_verde2.png"];
-
 export default function ModalCadRoom({
   open,
   setOpen,
@@ -42,14 +40,11 @@ export default function ModalCadRoom({
     setImages([]); // Limpa as imagens ao abrir o modal
   };
   const handleClose = () => setOpen(false);
-  const [images, setImages] = useState<File[]>([]);
+  const [images, setImages] = useState<string[]>(["/sala_verde1.png", "/sala_verde2.png"]);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const uploadedImages = Array.from(e.target.files) as File[];
-      setImages((prevImages) => [...prevImages, ...uploadedImages]);
-    }
-  };
+  const handleFiles = (files: File[]) => {
+    setImages(Array.from(files).map(f => URL.createObjectURL(f)));
+  }
 
   const predios = [
     { label: "" },
@@ -105,7 +100,9 @@ export default function ModalCadRoom({
                           </svg>
                             Lotação
                           </li>
-                          <Input placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0"/>
+                          <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
+                          <Input placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center"/>
+                          </div>
                         </div>
                         <div className="flex w-full justify-between">
                           <li className="flex items-center gap-3">
@@ -196,18 +193,18 @@ export default function ModalCadRoom({
                 ))}
               </Carousel> */}
               <div className=" w-64 h-2/5   space-y-4 ">
-              <Input className='w-64' placeholder="*Cadastre imagens da sala +" />
+              <Input file className='w-64' placeholder="*Cadastre imagens da sala +" onChange={files => handleFiles(files)}/>
               <Carousel className='w-80 '>
-                {salaImages.map((image, index) => (
+                {images.map((image, index) => (
                   <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
                 ))}
               </Carousel>
             </div>
             </div>
             <div className="w-full h-full  flex justify-end pt-3">
-                      <ButtonCancel nameButton="Cancelar" />
-                      <ButtonConfirm nameButton="Cadastrar" onClick={undefined} colorButton="bg-blue-500"/>
-                    </div>
+              <ButtonCancel nameButton="Cancelar" />
+              <ButtonConfirm nameButton="Cadastrar" onClick={undefined} colorButton="bg-blue-500"/>
+            </div>
           </div>
         </Box>
       </Modal>

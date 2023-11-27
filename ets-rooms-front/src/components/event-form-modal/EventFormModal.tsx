@@ -63,10 +63,18 @@ const EventFormModal = ({
   const [selectedInstrutor, setSelectedInstrutor] = useState<InstrutorWithMaterias | undefined>(instrutores[0]);
   const [selectedMateria, setSelectedMateria] = useState<MateriaData | undefined>(instrutores[0]?.materias[0]);
   const [desc, setDesc] = useState('');
+  const [recorrencia, setRecorrencia] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [recorrencia, setRecorrencia] = useState(false);
 
+  const openAlert = (message) => {
+    setAlertMessage(message);
+    setIsAlertOpen(true);
+  };
+
+  const closeAlert = () => {
+    setIsAlertOpen(false);
+  };
 
   useEffect(() => {
     setSelectedInstrutor(instrutores[0]);
@@ -78,15 +86,6 @@ const EventFormModal = ({
     const minutes = parseInt(timeParts[1]);
     const roundedMinutes = Math.ceil(minutes / 30) * 30;
     return `${timeParts[0]}:${roundedMinutes.toString().padStart(2, "0")}`;
-  };
-
-  const openAlert = (message) => {
-    setAlertMessage(message);
-    setIsAlertOpen(true);
-  };
-
-  const closeAlert = () => {
-    setIsAlertOpen(false);
   };
 
   const createEvento = async () => {
@@ -183,7 +182,7 @@ const EventFormModal = ({
                 />
                 <InputPassword placeholder="*EDV ou senha"/>
                 <Input placeholder="*E-mail do responsável" value={selectedInstrutor?.email}/>
-                <Input placeholder="Descrição" value={desc} onChange={e => {setDesc(e.target.value)}}/>
+                <Input placeholder="Descrição" value={desc} onChange={value => {setDesc(value)}}/>
               </div>
               <div className="w-2/4 h-[90%]">
                 <div className="w-full h-2/6">

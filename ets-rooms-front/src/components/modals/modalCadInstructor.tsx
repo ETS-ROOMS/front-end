@@ -9,6 +9,8 @@ import CircleInstructor from "../circle-instructor/CircleInstructor";
 import Colorful from "../colorful/Colorful";
 import ButtonCancel from "../button-cancel/ButtonCancel";
 import ButtonConfirm from "../button-confirm/ButtonConfirm";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const style = {
   position: "absolute",
@@ -51,6 +53,17 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
     cor: "#000",
     materias: [],
   });
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const openAlert = (message: string) => {
+    setAlertMessage(message);
+    setIsAlertOpen(true);
+  };
+
+  const closeAlert = () => {
+    setIsAlertOpen(false);
+  };
 
   const handleInputChange = (name, value) => {
     setFormData({
@@ -78,10 +91,10 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
     try {
       const response = await axios.post(`${API_URL}/instrutor/`, formData);
       console.log("Cadastro bem-sucedido", response.data);
-      alert("Deu bom");
+      openAlert("Instrutor cadastrado com sucesso");
+      handleClose();
     } catch (error) {
       console.error("Erro ao cadastrar instrutor", error);
-      alert("Deu ruim");
     }
   };
 
@@ -186,6 +199,21 @@ export default function ModalCadInstructors({ open, setOpen }: { open: boolean, 
           </div>
         </Box>
       </Modal>
+      <Snackbar
+        open={isAlertOpen}
+        autoHideDuration={6000} // Controla por quanto tempo o alerta é exibido (em milissegundos)
+        onClose={closeAlert}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          severity="success" // Você pode alterar para 'error', 'warning', 'info' conforme necessário
+          onClose={closeAlert}
+        >
+          {alertMessage}
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 }
