@@ -219,128 +219,6 @@ const InfoSala: React.FC<InfoSalaProps> = ({
                 {`${televisao} televisão`}
                 </div>
               </div>
-              <div className="flex flex-col gap-2 my-4">
-                <div className="flex gap-2">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_696_6862)">
-                      <path
-                        d="M3 5C3 4.73478 3.10536 4.48043 3.29289 4.29289C3.48043 4.10536 3.73478 4 4 4H20C20.2652 4 20.5196 4.10536 20.7071 4.29289C20.8946 4.48043 21 4.73478 21 5V15C21 15.2652 20.8946 15.5196 20.7071 15.7071C20.5196 15.8946 20.2652 16 20 16H4C3.73478 16 3.48043 15.8946 3.29289 15.7071C3.10536 15.5196 3 15.2652 3 15V5Z"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M7 20H17"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M9 16V20"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M15 16V20"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_696_6862">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  {`${computador} computadores`}
-                </div>
-                <div className="flex gap-2">
-                  <svg
-                    width="25"
-                    height="24"
-                    viewBox="0 0 25 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_1273_4198)">
-                      <path
-                        d="M8.5 19H5.5C4.96957 19 4.46086 18.7893 4.08579 18.4142C3.71071 18.0391 3.5 17.5304 3.5 17V7C3.5 6.46957 3.71071 5.96086 4.08579 5.58579C4.46086 5.21071 4.96957 5 5.5 5H19.5C20.0304 5 20.5391 5.21071 20.9142 5.58579C21.2893 5.96086 21.5 6.46957 21.5 7V18C21.5 18.2652 21.3946 18.5196 21.2071 18.7071C21.0196 18.8946 20.7652 19 20.5 19"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M11.5 17C11.5 16.7348 11.6054 16.4804 11.7929 16.2929C11.9804 16.1054 12.2348 16 12.5 16H16.5C16.7652 16 17.0196 16.1054 17.2071 16.2929C17.3946 16.4804 17.5 16.7348 17.5 17V18C17.5 18.2652 17.3946 18.5196 17.2071 18.7071C17.0196 18.8946 16.7652 19 16.5 19H12.5C12.2348 19 11.9804 18.8946 11.7929 18.7071C11.6054 18.5196 11.5 18.2652 11.5 18V17Z"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1273_4198">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                          transform="translate(0.5)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  {`${quadro_branco} quadro branco`}
-                </div>
-                <div className="flex gap-2">
-                  <svg
-                    width="25"
-                    height="24"
-                    viewBox="0 0 25 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_1273_4206)">
-                      <path
-                        d="M3.5 9C3.5 8.46957 3.71071 7.96086 4.08579 7.58579C4.46086 7.21071 4.96957 7 5.5 7H19.5C20.0304 7 20.5391 7.21071 20.9142 7.58579C21.2893 7.96086 21.5 8.46957 21.5 9V18C21.5 18.5304 21.2893 19.0391 20.9142 19.4142C20.5391 19.7893 20.0304 20 19.5 20H5.5C4.96957 20 4.46086 19.7893 4.08579 19.4142C3.71071 19.0391 3.5 18.5304 3.5 18V9Z"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M16.5 3L12.5 7L8.5 3"
-                        stroke="#007BC0"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1273_4206">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                          transform="translate(0.5)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  {`${televisao} televisão`}
-                </div>
-              </div>
             </div>
 
             <Carousel>
@@ -348,18 +226,12 @@ const InfoSala: React.FC<InfoSalaProps> = ({
                 <img
                   className="rounded-md"
                   key={index}
-                  src={image}
+                  src={`${API_URL}${image}`}
                   alt={`Imagem ${index + 1}`}
                 />
               ))}
             </Carousel>
-          </div>
-          
-          <Carousel>
-            {images.map((image, index) => (
-              <img className='rounded-md' key={index} src={`${API_URL}${image}`} alt={`Imagem ${index + 1}`} />
-            ))}
-          </Carousel>
+          </div> 
         </div>
       ) : null}
     </div>
