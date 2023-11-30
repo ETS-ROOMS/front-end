@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Modal, Button, Snackbar } from "@mui/material";
-import MuiAlert from "@mui/material/Alert";
+import { Box, Modal, Snackbar } from "@mui/material";
 import Input from "../inputs/Input";
 import InputSelect from "../inputs/InputSelect";
 import Carousel from "react-material-ui-carousel";
@@ -8,27 +7,11 @@ import ButtonConfirm from "../button-confirm/ButtonConfirm";
 import ButtonCancel from "../button-cancel/ButtonCancel";
 import { API_URL } from "../../config";
 import axios from "axios";
+import { style } from "./modalCadRoom";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 810,
-  bgcolor: "background.paper",
-  borderRadius: 2,
-  boxShadow: 24,
-  height: 580,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: 2,
-  zIndex: "2",
-};
 
 export default function ModalCadRoom({
-  open,
-  setOpen,
+  open, setOpen,
 }: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -53,10 +36,6 @@ export default function ModalCadRoom({
     setIsAlertOpen(true);
   };
 
-  const closeAlert = () => {
-    setIsAlertOpen(false);
-  };
-
   useEffect(() => {
     setImages([]);
     setData({
@@ -69,21 +48,21 @@ export default function ModalCadRoom({
       televisao: 0,
       quadroBranco: 0
     });
-  }, [open])
+  }, [open]);
 
   const handleFiles = (files: FileList) => {
     setImages(Array.from(files));
-  }
+  };
 
   const handleChange = (name: keyof typeof data, val: string) => {
     setData(p => ({
       ...p,
       [name]: val
     }));
-  }
+  };
 
   const submit = async () => {
-    const { data: { id_sala } } = await axios.post(`${API_URL}/sala/`, {
+    const { data: { sala_id } } = await axios.post(`${API_URL}/sala/`, {
       nome_sala: data.nome,
       predio_sala: data.predio,
       localizacao_sala: data.localizacao,
@@ -94,16 +73,16 @@ export default function ModalCadRoom({
       projetor: data.postosRobotica, // <<<- mudar se pa
     });
 
-    for (const file of images) { 
+    for (const file of images) {
       const res = await axios.postForm(`${API_URL}/upload/`, {
-        file,
-        sala_id: id_sala
-      });      
+        sala_id,
+        file
+      });
       console.log('file response -> ', res.data);
     }
 
-    openAlert("Sala cadastrada com sucesso");
-  }
+
+  };
 
   const predios = [
     { label: "Ca170" },
@@ -135,8 +114,7 @@ export default function ModalCadRoom({
                       label: p.label,
                       value: p.label,
                     }))}
-                    onChange={(e) => handleChange("predio", e.target.value)}
-                  />
+                    onChange={(e) => console.log(e.target.value)} />
 
                 </div>
                 <div className="w-full">
@@ -173,8 +151,7 @@ export default function ModalCadRoom({
                               value={data.lotacao}
                               onChange={val => handleChange("lotacao", val)}
                               placeholder="0"
-                              className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center" 
-                              />
+                              className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center" />
                           </div>
                         </div>
                         <div className="flex w-full justify-between">
@@ -198,7 +175,7 @@ export default function ModalCadRoom({
                             <Input
                               value={data.computador}
                               onChange={val => handleChange("computador", val)}
-                            placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
+                              placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
                           </div>
                         </div>
                         <div className="flex w-full justify-between">
@@ -216,10 +193,10 @@ export default function ModalCadRoom({
                             Postos de robótica
                           </li>
                           <div className="w-7 h-7 rounded border border-gray-500 flex justify-center items-center ">
-                            <Input 
+                            <Input
                               value={data.postosRobotica}
                               onChange={val => handleChange("postosRobotica", val)}
-                            placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
+                              placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
                           </div>
                         </div>
                         <div className="flex w-full justify-between">
@@ -241,7 +218,7 @@ export default function ModalCadRoom({
                             <Input
                               value={data.televisao}
                               onChange={val => handleChange("televisao", val)}
-                            placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
+                              placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
                           </div>
                         </div>
                         <div className="flex w-full justify-between">
@@ -263,7 +240,7 @@ export default function ModalCadRoom({
                             <Input
                               value={data.quadroBranco}
                               onChange={val => handleChange("quadroBranco", val)}
-                             placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
+                              placeholder="0" className="w-8 h-8 rounded border border-gray-500 flex justify-center items-center text-center pl-0" />
                           </div>
                         </div>
                       </div>
@@ -272,11 +249,11 @@ export default function ModalCadRoom({
                 </div>
               </div>
               {/* <Input className='w-1/5' placeholder="*Cadastre novas imagens da sala +" />
-              <Carousel className='w-2/5 bg-pink-300'>
-                {salaImages.map((image, index) => (
-                  <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
-                ))}
-              </Carousel> */}
+            <Carousel className='w-2/5 bg-pink-300'>
+              {salaImages.map((image, index) => (
+                <img className='rounded-md' key={index} src={image} alt={`Imagem ${index + 1}`} />
+              ))}
+            </Carousel> */}
               <div className=" w-64 h-2/5 space-y-4">
                 <div className="w-full">
                   <label>Imagens</label>
