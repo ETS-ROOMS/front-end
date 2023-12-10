@@ -15,6 +15,8 @@ export default function InputPassword(props) {
         className="w-full h-12 pl-3 rounded outline-none drop-shadow-md text-base border border-gray-500 hover:border-black hover:bg-gray-100 focus:border-black focus:bg-gray-100 pr-16"
         type={showPassword ? "text" : "password"}
         placeholder={props.placeholder}
+        onChange={props.onChange}
+        value={props.value}
       />
       <button
         className="absolute top-0 right-0 w-12 h-full flex items-center justify-center"

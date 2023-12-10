@@ -10,7 +10,7 @@ import InputCheckbox from "../inputs/InputCheckbox";
 import InputTimer from "../inputs/InputTimer";
 import { InstrutorWithMaterias } from '../../pages/home/Agendar';
 import { API_URL } from "../../config";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { MateriaData } from "../../pages/resume-page/ResumePage";
 import { formatDate } from "../../utils/date";
 import Snackbar from "@mui/material/Snackbar";
@@ -59,6 +59,7 @@ const EventFormModal = ({
 }) => {
   const [selectedStartDate, setSelectedStartDate] = useState(selectedDate);
   const [selectedEndDate, setSelectedEndDate] = useState(selectedDate);
+  const [edv, setEdv] = useState("");
   const [startTime, setStartTime] = useState("7:30");
   const [selectedInstrutor, setSelectedInstrutor] = useState<InstrutorWithMaterias | undefined>(instrutores[0]);
   const [selectedMateria, setSelectedMateria] = useState<MateriaData | undefined>(instrutores[0]?.materias[0]);
@@ -66,8 +67,10 @@ const EventFormModal = ({
   const [recorrencia, setRecorrencia] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [severity, setSeverity] = useState<"success" | "error">("success");
 
-  const openAlert = (message) => {
+  const openAlert = (message, _severity: "success" | "error") => {
+    setSeverity(_severity);
     setAlertMessage(message);
     setIsAlertOpen(true);
   };
@@ -97,19 +100,25 @@ const EventFormModal = ({
         hora_inicio: startTime,
         hora_fim: endTime,
         local,
+        edv,
         nome_sala: nomeSala,
         instrutor: selectedInstrutor?.id_instrutor,
         materia: selectedMateria?.id,
         recorrencia,
         tipo_recorrencia: 'mensal'
     };
-    const { data } = await axios.post(`${API_URL}/evento/`, payload);
+    const res = await axios.post(`${API_URL}/evento/`, payload);
 
-    console.log(data);
+    console.log(res.data);
     onClose();
-    openAlert("Agendamento realizado com sucesso!");
+    openAlert("Agendamento realizado com sucesso!", "success");
   } catch (error) {
     console.error(error);
+    if (error instanceof AxiosError) {
+      if (error.response?.status == 403) {
+        openAlert("EDV não é igual ao do instrutor selecionado", "error");
+      }
+    }
     // Trate os erros conforme necessário
   }
 };
@@ -180,7 +189,7 @@ const EventFormModal = ({
                     setSelectedMateria(selected);
                   }}
                 />
-                <InputPassword placeholder="*EDV ou senha"/>
+                <InputPassword placeholder="*EDV ou senha" value={edv} onChange={(e: any) => setEdv(e.target.value)}/>
                 <Input placeholder="*E-mail do responsável" value={selectedInstrutor?.email}/>
                 <Input placeholder="Descrição" value={desc} onChange={value => {setDesc(value)}}/>
               </div>
@@ -261,7 +270,7 @@ const EventFormModal = ({
         <MuiAlert
           elevation={6}
           variant="filled"
-          severity="success" // Você pode alterar para 'error', 'warning', 'info' conforme necessário
+          severity={severity} // Você pode alterar para 'error', 'warning', 'info' conforme necessário
           onClose={closeAlert}
         >
           {alertMessage}
